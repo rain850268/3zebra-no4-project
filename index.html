@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦓 3ZeBra 好動力 | 專案戰情室</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+:root{
+  --bg:#F7F7F7;
+  --bg-alt:#F3F1EE;
+  --card:#FFFFFF;
+  --text:#333333;
+  --text-soft:#5C5A56;
+  --muted:#918D86;
+  --border:#E6E2DB;
+  --border-soft:#EDEAE4;
+  --accent:#EB6834;
+  --accent-soft:#FBE4D8;
+  --accent-2:#2A78D6;
+  --accent-2-soft:#DCE9F9;
+  --good:#3F6B3B;
+  --good-bg:#E4EEE2;
+  --amber:#8A6316;
+  --amber-bg:#F7EAD2;
+  --critical:#A33327;
+  --critical-bg:#F8E1DE;
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 1px 2px rgba(51,51,51,.04), 0 8px 24px rgba(51,51,51,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Rubik','Noto Sans TC',-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(247,247,247,.88);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:2px;
+  padding:0 20px;overflow-x:auto;
+}
+nav::-webkit-scrollbar{display:none;}
+.nav-brand{
+  font-weight:800;font-size:15px;color:var(--text);
+  white-space:nowrap;padding:16px 18px 16px 0;
+  margin-right:6px;border-right:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;
+}
+nav a{
+  color:var(--muted);text-decoration:none;
+  padding:16px 14px;white-space:nowrap;
+  font-size:13px;font-weight:600;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+}
+nav a:hover:not(.active){color:var(--text);}
+nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* ===== LAYOUT ===== */
+.tab{display:none;}
+.tab.active{display:block;}
+.page{max-width:1180px;margin:0 auto;padding:28px 20px 72px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+@media(max-width:1000px) and (min-width:761px){.grid3{grid-template-columns:1fr 1fr;}.grid4{grid-template-columns:1fr 1fr;}}
+.mb16{margin-bottom:16px;}
+.mb20{margin-bottom:20px;}
+.mb28{margin-bottom:28px;}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);
+  border:1px solid var(--border-soft);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.card-title{font-size:15px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.card-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
+h2{font-size:19px;font-weight:800;letter-spacing:-.2px;}
+h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;}
+.eyebrow{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(135deg,#3A342E 0%,#4E453B 100%);
+  color:#fff;border-radius:20px;padding:32px 32px 28px;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+  background:radial-gradient(circle,rgba(235,104,52,.35) 0%,rgba(235,104,52,0) 70%);
+}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;position:relative;z-index:1;}
+.hero-label{font-size:12px;opacity:.7;font-weight:600;letter-spacing:.5px;margin-bottom:6px;}
+.hero-status{font-size:32px;font-weight:800;letter-spacing:-.5px;}
+.hero-goal{font-size:13px;opacity:.8;margin-top:8px;}
+.hero-goal strong{color:#F2A882;font-weight:700;}
+.hero-stat{text-align:right;}
+.hero-stat .val{font-size:30px;font-weight:800;line-height:1;}
+.hero-stat .lbl{font-size:12px;opacity:.75;margin-top:6px;}
+.progress-track{background:rgba(255,255,255,.18);border-radius:99px;height:8px;margin:20px 0 8px;position:relative;z-index:1;}
+.progress-fill{background:var(--accent);border-radius:99px;height:8px;transition:width .8s;}
+.progress-caption{display:flex;justify-content:space-between;font-size:11px;opacity:.65;position:relative;z-index:1;}
+
+/* ===== STAT TILE / KPI ===== */
+.kpi{padding:20px;}
+.kpi .icon{font-size:20px;margin-bottom:10px;}
+.kpi .val{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.3px;}
+.kpi .lbl{font-size:12.5px;color:var(--text-soft);margin-top:4px;font-weight:500;}
+.kpi .sub{font-size:11.5px;color:var(--muted);margin-top:6px;}
+.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;}
+.tag-good{background:var(--good-bg);color:var(--good);}
+.tag-amber{background:var(--amber-bg);color:var(--amber);}
+.tag-accent{background:var(--accent-soft);color:#B14A1F;}
+.tag-blue{background:var(--accent-2-soft);color:#1F5590;}
+.tag-gray{background:var(--bg-alt);color:var(--muted);}
+
+/* ===== METER ===== */
+.meter-wrap{display:flex;align-items:center;gap:20px;}
+.meter-figure{font-size:40px;font-weight:800;color:var(--text);min-width:92px;}
+.meter-body{flex:1;}
+.meter-track{background:var(--accent-soft);border-radius:99px;height:10px;overflow:hidden;}
+.meter-fill{background:var(--accent);height:100%;border-radius:99px;transition:width 1s;}
+.meter-caption{font-size:12px;color:var(--muted);margin-top:8px;}
+
+/* ===== STACKED PROPORTION BAR ===== */
+.prop-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;background:var(--bg-alt);}
+.prop-seg{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#fff;}
+.prop-legend{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap;}
+.prop-legend-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-soft);}
+.prop-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0;}
+
+/* ===== TIMELINE ===== */
+.timeline-scroll{overflow-x:auto;padding-bottom:6px;}
+.timeline{display:flex;gap:0;min-width:max-content;padding:8px 4px 4px;}
+.tl-item{display:flex;flex-direction:column;align-items:center;width:128px;position:relative;text-align:center;}
+.tl-item::before{
+  content:"";position:absolute;top:9px;left:-64px;width:128px;height:2px;background:var(--border);z-index:0;
+}
+.tl-item:first-child::before{display:none;}
+.tl-dot{width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--border);z-index:1;margin-bottom:10px;}
+.tl-item.done .tl-dot{background:var(--accent);border-color:var(--accent);}
+.tl-item.today .tl-dot{background:#fff;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);}
+.tl-date{font-size:11px;font-weight:700;color:var(--muted);}
+.tl-item.done .tl-date{color:var(--text-soft);}
+.tl-item.today .tl-date{color:var(--accent);}
+.tl-label{font-size:12px;font-weight:600;color:var(--text);margin-top:3px;line-height:1.35;padding:0 4px;}
+.tl-item.done .tl-label{color:var(--text-soft);}
+
+/* ===== CHART ===== */
+.chart-wrap{position:relative;height:270px;}
+.chart-wrap.tall{height:320px;}
+
+/* ===== TABLE ===== */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;padding:9px 10px;font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);}
+td{padding:10px;border-bottom:1px solid var(--border-soft);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+.tbl-scroll{overflow-x:auto;}
+
+/* ===== INSIGHT CARDS ===== */
+.insight-card{
+  border-left:3px solid var(--accent);
+  background:var(--bg-alt);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:16px 18px;
+}
+.insight-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:1px;margin-bottom:6px;}
+.insight-title{font-size:14px;font-weight:700;margin-bottom:6px;}
+.insight-body{font-size:13px;color:var(--text-soft);line-height:1.65;}
+
+/* ===== QUOTE ===== */
+.quote{
+  background:var(--bg-alt);border-radius:var(--radius-sm);
+  padding:14px 16px;font-size:13px;color:var(--text-soft);
+  position:relative;line-height:1.6;
+}
+.quote::before{content:"“";font-size:26px;color:var(--accent);font-weight:800;line-height:0;position:relative;top:8px;margin-right:2px;}
+
+/* ===== EMPTY STATE ===== */
+.empty-state{
+  text-align:center;padding:72px 20px;
+}
+.empty-icon{font-size:38px;margin-bottom:16px;opacity:.85;}
+.empty-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.empty-sub{font-size:13px;color:var(--muted);max-width:360px;margin:0 auto;}
+
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:32px 20px 48px;font-size:11.5px;color:var(--muted);}
+
+hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
+.section-title{font-size:16px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">🦓 好動力</span>
+  <a href="#" class="active" onclick="return switchTab('overview',this)">📊 總覽</a>
+  <a href="#" onclick="return switchTab('survey',this)">📝 問卷成效</a>
+  <a href="#" onclick="return switchTab('budget',this)">💰 預算控制</a>
+  <a href="#" onclick="return switchTab('pnl',this)">📉 損益</a>
+  <a href="#" onclick="return switchTab('kol',this)">📣 KOL</a>
+  <a href="#" onclick="return switchTab('push',this)">📬 行銷推播</a>
+  <a href="#" onclick="return switchTab('products',this)">🛍️ 產品購買</a>
+  <a href="#" onclick="return switchTab('discounts',this)">🎟️ 折扣碼</a>
+  <a href="#" onclick="return switchTab('referrals',this)">🤝 推薦贊助</a>
+  <a href="#" onclick="return switchTab('closing',this)">🏁 結案報告</a>
+</nav>
+
+<!-- ==================== 總覽 ==================== -->
+<div class="tab active" id="tab-overview">
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-row">
+      <div>
+        <div class="hero-label">專案階段</div>
+        <div class="hero-status">📝 問卷收集中</div>
+        <div class="hero-goal">距離正式開賣（10/14）還有 <strong>42 天</strong> ・ 目前已收集 <strong>297 份</strong>問卷</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">63%</div>
+        <div class="lbl">募資前準備期進度</div>
+      </div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:63%"></div></div>
+    <div class="progress-caption">
+      <span>6/22 專案啟動</span><span>9/2 現在</span><span>10/14 正式開賣</span>
+    </div>
+  </div>
+
+  <div class="grid4 mb20">
+    <div class="card kpi">
+      <div class="icon">📝</div>
+      <div class="val">297</div>
+      <div class="lbl">問卷回收數</div>
+      <div class="sub">8/25 – 9/1，收集中</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">🔥</div>
+      <div class="val">5.36</div>
+      <div class="lbl">平均心動指數</div>
+      <div class="sub">滿分 7 分，79% 給 5 分以上</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">📣</div>
+      <div class="val">$27,736</div>
+      <div class="lbl">問卷廣告花費</div>
+      <div class="sub">Meta 廣告，8/25 – 9/1</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">💸</div>
+      <div class="val">$93</div>
+      <div class="lbl">混合平均 CPL</div>
+      <div class="sub"><span class="tag tag-good">較 8 月下降 8.7%</span></div>
+    </div>
+  </div>
+
+  <div class="card mb20">
+    <div class="section-title">🗓️ 專案時程軸</div>
+    <div class="timeline-scroll">
+      <div class="timeline">
+        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">7/13</div><div class="tl-label">產品定位定案</div></div>
+        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">8/26</div><div class="tl-label">嘖嘖提案 ／<br>網紅體驗會</div></div>
+        <div class="tl-item today"><div class="tl-dot"></div><div class="tl-date">9/2</div><div class="tl-label">今天・體驗會<br>影片製作</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">10/7</div><div class="tl-label">FB 開賣預告</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">10/14</div><div class="tl-label">🎉 正式開賣</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">10/19</div><div class="tl-label">一般／VIP<br>體驗會</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">10/28</div><div class="tl-label">嘖嘖首批出貨</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">11/23</div><div class="tl-label">早鳥截止</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">11/25<br>–12/16</div><div class="tl-label">分 4 批<br>陸續出貨</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card" style="grid-column:span 2">
+      <div class="section-title">💡 重點洞察</div>
+      <div class="insight-body">
+        問卷還在收集中，但已經有 297 份的樣本，加上 79% 給了 5 分以上的心動程度，代表「平板律動走步機」這個產品概念已經打中痛點。熟齡族群（45 歲以上佔 47%）明顯偏好扶手撐款，加上 Meta 廣告的 CPL 比自有渠道貴一截，接下來可以往「主推扶手款、加碼自有渠道」的方向調整。完整圖表跟建議都整理在
+        <a href="#" onclick="return switchTab('survey', document.querySelectorAll('nav a')[1])" style="color:var(--accent);font-weight:700;text-decoration:none">問卷成效</a> 分頁。
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">📌 下一步</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-soft)">
+        <div>① 9/2 起製作體驗會影片素材</div>
+        <div>② 10/7 開始 FB 開賣預告</div>
+        <div>③ 10/14 正式開賣，準備開賣廣告 ／ EDM ／ LINE 推播</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== 問卷成效 ==================== -->
+<div class="tab" id="tab-survey">
+<div class="page">
+
+  <div class="mb20">
+    <div class="eyebrow">Survey Insights</div>
+    <h2>問卷成效與洞察</h2>
+    <div class="card-sub" style="margin-top:6px">統計期間 8/25 – 9/1（嘖嘖問卷落地頁），共 298 份有效回覆</div>
+  </div>
+
+  <div class="grid4 mb20">
+    <div class="card kpi">
+      <div class="icon">📝</div>
+      <div class="val">297</div>
+      <div class="lbl">問卷回收總數</div>
+      <div class="sub">8/25 – 9/1</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">🔥</div>
+      <div class="val">5.36</div>
+      <div class="lbl">平均心動指數</div>
+      <div class="sub">n = 255（回答率 86%）</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">📣</div>
+      <div class="val">$156</div>
+      <div class="lbl">Meta 廣告 CPL</div>
+      <div class="sub">178 份，追蹤歸因</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">💸</div>
+      <div class="val">$93</div>
+      <div class="lbl">混合平均 CPL</div>
+      <div class="sub">全部 297 份，含自有渠道</div>
+    </div>
+  </div>
+
+  <div class="grid2 mb20">
+    <div class="card">
+      <div class="card-title">📈 每日問卷回收數</div>
+      <div class="card-sub">長條為單日回收，折線為累積總數</div>
+      <div class="chart-wrap"><canvas id="chartDaily"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔥 心動程度分佈</div>
+      <div class="card-sub">1 分：還好耶　→　7 分：馬上就想要（n = 255）</div>
+      <div class="chart-wrap"><canvas id="chartExcite"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid2 mb20">
+    <div class="card">
+      <div class="card-title">🦓 款式偏好</div>
+      <div class="card-sub">n = 264</div>
+      <div class="prop-bar" id="propStyle"></div>
+      <div class="prop-legend">
+        <div class="prop-legend-item"><span class="prop-dot" style="background:var(--accent)"></span>扶手撐款｜長輩更安心（59.8%）</div>
+        <div class="prop-legend-item"><span class="prop-dot" style="background:var(--accent-2)"></span>超薄機身｜小坪數友善（40.2%）</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🙋 體驗會參加意願</div>
+      <div class="card-sub">n = 266，若未來開放實體體驗會</div>
+      <div class="meter-wrap">
+        <div class="meter-figure">68%</div>
+        <div class="meter-body">
+          <div class="meter-track"><div class="meter-fill" style="width:68.4%"></div></div>
+          <div class="meter-caption">182 人有意願參加，84 人暫無意願</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb20">
+    <div class="card-title">👥 年齡層分佈</div>
+    <div class="card-sub">n = 277</div>
+    <div class="chart-wrap"><canvas id="chartAge"></canvas></div>
+  </div>
+
+  <div class="grid2 mb20">
+    <div class="card">
+      <div class="card-title">😩 未能維持運動習慣的原因</div>
+      <div class="card-sub">複選，佔全部 298 份回覆的比例</div>
+      <div class="chart-wrap tall"><canvas id="chartPain"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">✨ 最吸引人的功能特色</div>
+      <div class="card-sub">複選，佔全部 298 份回覆的比例</div>
+      <div class="chart-wrap tall"><canvas id="chartFeature"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card mb20">
+    <div class="section-title">💡 洞察與建議</div>
+    <div class="grid2" style="gap:14px">
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 01</div>
+        <div class="insight-title">概念驗證成功，可以往下一步走了</div>
+        <div class="insight-body">79% 的人給了 5 分以上的心動程度（平均 5.36 / 7 分），代表產品概念已經打中痛點。接下來的重點是把「想要」轉換成「行動」，開賣前的預告與體驗會很關鍵。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 02</div>
+        <div class="insight-title">熟齡客群是主力，扶手款要主打</div>
+        <div class="insight-body">45 歲以上佔了 47.3%，扶手撐款的偏好度（59.8%）也明顯高於超薄款（40.2%）。建議首波素材與文案優先強調「安心、穩定」的扶手款賣點，鎖定熟齡族群溝通。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 03</div>
+        <div class="insight-title">三大痛點都指向「省力」</div>
+        <div class="insight-body">下班太累（58%）、健身房貴又有推銷壓力（49%）、買了器材放到積灰塵（46%），這些痛點剛好對應產品「免出門、免推銷、免佔空間」的核心價值，文案可以直接對症下藥。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 04</div>
+        <div class="insight-title">自有渠道比廣告更划算</div>
+        <div class="insight-body">Meta 廣告的 CPL 是 $156，混合所有渠道（含 LINE 推播）平均只要 $93，代表自有渠道的導流效率更好。建議開賣前加碼 LINE、EDM 等自有渠道，適度控制廣告預算。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">🗣️ 開放意見精選</div>
+      <div class="card-sub">17 則留言中，價格是最常被提到的關鍵字</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="quote">希望甜甜價讓大家都可以輕鬆運動</div>
+        <div class="quote">保固期限延長，價格優惠</div>
+        <div class="quote">一機多用真的很讚 👍🏻</div>
+        <div class="quote">價格可以在 3,000–4,000 內</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎯 定價提醒</div>
+      <div class="insight-body">開放意見裡多次出現價格相關字眼，且落點集中在 3,000–4,000 元區間。早鳥定價策略建議把這個甜蜜點納入評估，避免因為價格落差過大而流失已經有高心動指數的名單。</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== 空白分頁 ==================== -->
+<div class="tab" id="tab-budget"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">💰</div>
+    <div class="empty-title">尚無預算資料</div>
+    <div class="empty-sub">開賣後這裡會顯示廣告花費、進度與預算控管總覽。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-pnl"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">📉</div>
+    <div class="empty-title">尚無損益資料</div>
+    <div class="empty-sub">結案後這裡會整理營收、成本與淨利拆解。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-kol"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">📣</div>
+    <div class="empty-title">尚無 KOL 成效資料</div>
+    <div class="empty-sub">網紅素材陸續上線後，這裡會顯示各組 KOL 的成效追蹤。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-push"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">📬</div>
+    <div class="empty-title">尚無推播成效資料</div>
+    <div class="empty-sub">LINE、EDM、SMS 開始推播後，這裡會顯示開信率與點擊成效。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-products"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">🛍️</div>
+    <div class="empty-title">尚未開賣</div>
+    <div class="empty-sub">10 月 14 日正式開賣後，這裡會顯示商品購買狀況。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-discounts"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">🎟️</div>
+    <div class="empty-title">尚無折扣碼資料</div>
+    <div class="empty-sub">早鳥、晚鳥優惠上線後，這裡會顯示使用狀況。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-referrals"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">🤝</div>
+    <div class="empty-title">尚無推薦贊助資料</div>
+    <div class="empty-sub">轉介紹機制上線後，這裡會顯示推薦成效。</div>
+  </div></div>
+</div></div>
+
+<div class="tab" id="tab-closing"><div class="page">
+  <div class="card"><div class="empty-state">
+    <div class="empty-icon">🏁</div>
+    <div class="empty-title">專案進行中</div>
+    <div class="empty-sub">募資結束後，這裡會產出完整的結案報告。</div>
+  </div></div>
+</div></div>
+
+<footer>
+  資料更新：2026 / 9 / 2 ・ 問卷數據統計至 9 / 1 ・ 3ZeBra 好動力｜平板律動走步機 專案戰情室
+</footer>
+
+<script>
+function switchTab(id, el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  return false;
+}
+
+/* ===== chart.js shared defaults ===== */
+Chart.defaults.font.family = "'Rubik','Noto Sans TC',-apple-system,sans-serif";
+Chart.defaults.color = '#918D86';
+Chart.register(ChartDataLabels);
+Chart.defaults.set('plugins.datalabels', {display:false});
+
+const COLOR = {
+  accent:'#EB6834', accent2:'#2A78D6', text:'#333333', textSoft:'#5C5A56',
+  muted:'#918D86', grid:'#E6E2DB', surface:'#FFFFFF'
+};
+const BLUE_RAMP7 = ['#86b6ef','#6da7ec','#5598e7','#3987e5','#2a78d6','#1c5cab','#104281']; // 心動指數 1→7
+const BLUE_RAMP6 = ['#86b6ef','#6da7ec','#3987e5','#2a78d6','#1c5cab','#104281']; // 年齡層 6 桶
+
+const tooltipBase = {
+  backgroundColor:'#333333', titleColor:'#fff', bodyColor:'#fff',
+  padding:10, cornerRadius:8, titleFont:{weight:'600',size:12}, bodyFont:{size:12},
+  displayColors:false
+};
+
+/* ===== 每日問卷回收數（bar + cumulative line） ===== */
+new Chart(document.getElementById('chartDaily'), {
+  type:'bar',
+  data:{
+    labels:['8/25','8/26','8/27','8/28','8/29','8/30','8/31','9/1'],
+    datasets:[
+      {
+        type:'bar', label:'單日回收', data:[4,79,46,31,21,42,28,46],
+        backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom',
+        maxBarThickness:24, order:2
+      },
+      {
+        type:'line', label:'累積總數', data:[4,83,129,160,181,223,251,297],
+        borderColor:COLOR.accent2, backgroundColor:COLOR.accent2, borderWidth:2,
+        pointRadius:4, pointBackgroundColor:COLOR.accent2, pointBorderColor:'#fff', pointBorderWidth:2,
+        tension:.3, yAxisID:'y', order:1,
+        datalabels:{
+          display:(ctx)=> ctx.dataIndex === ctx.dataset.data.length-1,
+          align:'top', anchor:'end', color:COLOR.accent2, font:{weight:'700',size:12},
+          formatter:(v)=> v.toLocaleString()+' 份'
+        }
+      }
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index', intersect:false},
+    plugins:{
+      legend:{display:true, position:'top', align:'start', labels:{boxWidth:8, boxHeight:8, usePointStyle:true, font:{size:11.5}}},
+      tooltip:{...tooltipBase}
+    },
+    layout:{padding:{top:6, right:36}},
+    scales:{
+      x:{grid:{display:false}, ticks:{font:{size:11}}},
+      y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+/* ===== 心動程度分佈 ===== */
+new Chart(document.getElementById('chartExcite'), {
+  type:'bar',
+  data:{
+    labels:['1分','2分','3分','4分','5分','6分','7分'],
+    datasets:[{
+      data:[3,2,10,39,94,45,62],
+      backgroundColor:BLUE_RAMP7,
+      borderRadius:4, borderSkipped:'bottom', maxBarThickness:34,
+      datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:11}}
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase}},
+    scales:{
+      x:{grid:{display:false}, ticks:{font:{size:11}}},
+      y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+/* ===== 年齡層分佈 ===== */
+new Chart(document.getElementById('chartAge'), {
+  type:'bar',
+  data:{
+    labels:['25 歲以下','25–35','35–45','45–55','55–65','65 歲以上'],
+    datasets:[{
+      data:[7,63,71,88,43,5],
+      backgroundColor:BLUE_RAMP6,
+      borderRadius:4, borderSkipped:'bottom', maxBarThickness:46,
+      datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:11},
+        formatter:(v,ctx)=> v + ' 人（' + (v/277*100).toFixed(1) + '%）'}
+    }]
+  },
+  options:{
+    indexAxis:'x',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase}},
+    layout:{padding:{top:18}},
+    scales:{
+      x:{grid:{display:false}, ticks:{font:{size:11.5}}},
+      y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, beginAtZero:true}
+    }
+  }
+});
+
+/* ===== 痛點分析（horizontal） ===== */
+new Chart(document.getElementById('chartPain'), {
+  type:'bar',
+  data:{
+    labels:['下班太累，沒力氣運動','健身房貴，推銷壓力大','買了器材，放到積灰塵','天氣悶熱潮濕，打斷習慣','沒人督促，容易放棄','時間太零碎，難養成習慣'],
+    datasets:[{
+      data:[58.4,49.0,46.3,44.0,43.0,42.3],
+      backgroundColor:COLOR.accent,
+      borderRadius:4, borderSkipped:'left', maxBarThickness:22,
+      datalabels:{display:true, anchor:'end', align:'right', color:COLOR.textSoft, font:{weight:'700',size:11.5},
+        formatter:(v)=> v.toFixed(1)+'%'}
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase,
+      callbacks:{label:(ctx)=> ctx.parsed.x.toFixed(1)+'%'}}},
+    layout:{padding:{right:26}},
+    scales:{
+      x:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, max:70},
+      y:{grid:{display:false}, ticks:{font:{size:11.5}, color:COLOR.textSoft}}
+    }
+  }
+});
+
+/* ===== 功能吸引力排行（horizontal） ===== */
+new Chart(document.getElementById('chartFeature'), {
+  type:'bar',
+  data:{
+    labels:['扶手可折疊、輕薄好收納','律動／健走／爬坡／慢跑一台搞定','不用出門，不受天氣影響','平地爬坡自由調整強度','散步到有氧，自由抓節奏','獨立遙控器，免 App 操作','暖身、核心、放鬆三階段'],
+    datasets:[{
+      data:[51.3,51.0,49.3,41.9,37.2,34.9,24.8],
+      backgroundColor:COLOR.accent,
+      borderRadius:4, borderSkipped:'left', maxBarThickness:20,
+      datalabels:{display:true, anchor:'end', align:'right', color:COLOR.textSoft, font:{weight:'700',size:11.5},
+        formatter:(v)=> v.toFixed(1)+'%'}
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase,
+      callbacks:{label:(ctx)=> ctx.parsed.x.toFixed(1)+'%'}}},
+    layout:{padding:{right:26}},
+    scales:{
+      x:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, max:60},
+      y:{grid:{display:false}, ticks:{font:{size:11}, color:COLOR.textSoft}}
+    }
+  }
+});
+
+/* ===== 款式偏好 proportion bar ===== */
+(function(){
+  const el = document.getElementById('propStyle');
+  el.innerHTML =
+    '<div class="prop-seg" style="width:59.8%;background:var(--accent)">59.8%</div>' +
+    '<div style="width:2px;background:var(--bg)"></div>' +
+    '<div class="prop-seg" style="width:40.2%;background:var(--accent-2)">40.2%</div>';
+})();
+</script>
+
+</body>
+</html>
