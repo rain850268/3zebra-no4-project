@@ -62,13 +62,13 @@ nav::-webkit-scrollbar{display:none;}
 }
 nav a{
   color:var(--muted);text-decoration:none;
-  padding:16px 14px;white-space:nowrap;
-  font-size:13px;font-weight:600;
+  padding:17px 15px;white-space:nowrap;
+  font-size:14.5px;font-weight:400;
   border-bottom:2px solid transparent;
   transition:color .15s,border-color .15s;
 }
 nav a:hover:not(.active){color:var(--text);}
-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+nav a.active{color:var(--accent);font-weight:500;border-bottom-color:var(--accent);}
 
 /* ===== LAYOUT ===== */
 .tab{display:none;}
@@ -97,33 +97,31 @@ h2{font-size:19px;font-weight:800;letter-spacing:-.2px;}
 h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;}
 .eyebrow{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
 
-/* ===== HERO ===== */
+/* ===== HERO / STATUS CARD ===== */
 .hero{
-  background:linear-gradient(135deg,#3A342E 0%,#4E453B 100%);
-  color:#fff;border-radius:20px;padding:32px 32px 28px;margin-bottom:20px;
-  position:relative;overflow:hidden;
+  background:var(--bg-alt);border:1px solid var(--border);
+  border-radius:20px;padding:28px 30px;margin-bottom:20px;
 }
-.hero::after{
-  content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
-  background:radial-gradient(circle,rgba(235,104,52,.35) 0%,rgba(235,104,52,0) 70%);
-}
-.hero-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;position:relative;z-index:1;}
-.hero-label{font-size:12px;opacity:.7;font-weight:600;letter-spacing:.5px;margin-bottom:6px;}
-.hero-status{font-size:32px;font-weight:800;letter-spacing:-.5px;}
-.hero-goal{font-size:13px;opacity:.8;margin-top:8px;}
-.hero-goal strong{color:#F2A882;font-weight:700;}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+.hero-label{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:.5px;margin-bottom:6px;}
+.hero-status{font-size:28px;font-weight:600;letter-spacing:-.3px;color:var(--text);}
+.hero-goal{font-size:13px;color:var(--text-soft);margin-top:8px;font-weight:400;}
+.hero-goal strong{color:var(--text);font-weight:600;}
 .hero-stat{text-align:right;}
-.hero-stat .val{font-size:30px;font-weight:800;line-height:1;}
-.hero-stat .lbl{font-size:12px;opacity:.75;margin-top:6px;}
-.progress-track{background:rgba(255,255,255,.18);border-radius:99px;height:8px;margin:20px 0 8px;position:relative;z-index:1;}
+.hero-stat .val{font-size:28px;font-weight:600;line-height:1;color:var(--text);}
+.hero-stat .lbl{font-size:12px;color:var(--muted);margin-top:6px;font-weight:400;}
+.progress-track{background:var(--accent-soft);border-radius:99px;height:8px;margin:20px 0 8px;}
 .progress-fill{background:var(--accent);border-radius:99px;height:8px;transition:width .8s;}
-.progress-caption{display:flex;justify-content:space-between;font-size:11px;opacity:.65;position:relative;z-index:1;}
+.progress-caption{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);font-weight:400;}
+.hero-targets{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);}
+.hero-target{font-size:12.5px;color:var(--text-soft);}
+.hero-target b{color:var(--text);font-weight:600;}
 
 /* ===== STAT TILE / KPI ===== */
 .kpi{padding:20px;}
 .kpi .icon{font-size:20px;margin-bottom:10px;}
 .kpi .val{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.3px;}
-.kpi .lbl{font-size:12.5px;color:var(--text-soft);margin-top:4px;font-weight:500;}
+.kpi .lbl{font-size:12.5px;color:var(--text-soft);margin-top:4px;font-weight:400;}
 .kpi .sub{font-size:11.5px;color:var(--muted);margin-top:6px;}
 .tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;}
 .tag-good{background:var(--good-bg);color:var(--good);}
@@ -213,17 +211,17 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 <body>
 
 <nav>
-  <span class="nav-brand">🦓 好動力</span>
-  <a href="#" class="active" onclick="return switchTab('overview',this)">📊 總覽</a>
-  <a href="#" onclick="return switchTab('survey',this)">📝 問卷成效</a>
-  <a href="#" onclick="return switchTab('budget',this)">💰 預算控制</a>
-  <a href="#" onclick="return switchTab('pnl',this)">📉 損益</a>
-  <a href="#" onclick="return switchTab('kol',this)">📣 KOL</a>
-  <a href="#" onclick="return switchTab('push',this)">📬 行銷推播</a>
-  <a href="#" onclick="return switchTab('products',this)">🛍️ 產品購買</a>
-  <a href="#" onclick="return switchTab('discounts',this)">🎟️ 折扣碼</a>
-  <a href="#" onclick="return switchTab('referrals',this)">🤝 推薦贊助</a>
-  <a href="#" onclick="return switchTab('closing',this)">🏁 結案報告</a>
+  <span class="nav-brand">好動力</span>
+  <a href="#" class="active" onclick="return switchTab('overview',this)">總覽</a>
+  <a href="#" onclick="return switchTab('survey',this)">問卷成效</a>
+  <a href="#" onclick="return switchTab('budget',this)">預算控制</a>
+  <a href="#" onclick="return switchTab('pnl',this)">損益</a>
+  <a href="#" onclick="return switchTab('kol',this)">KOL</a>
+  <a href="#" onclick="return switchTab('push',this)">行銷推播</a>
+  <a href="#" onclick="return switchTab('products',this)">產品購買</a>
+  <a href="#" onclick="return switchTab('discounts',this)">折扣碼</a>
+  <a href="#" onclick="return switchTab('referrals',this)">推薦贊助</a>
+  <a href="#" onclick="return switchTab('closing',this)">結案報告</a>
 </nav>
 
 <!-- ==================== 總覽 ==================== -->
@@ -234,26 +232,30 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="hero-row">
       <div>
         <div class="hero-label">專案階段</div>
-        <div class="hero-status">📝 問卷收集中</div>
-        <div class="hero-goal">距離正式開賣（10/14）還有 <strong>42 天</strong> ・ 目前已收集 <strong>297 份</strong>問卷</div>
+        <div class="hero-status">問卷收集中</div>
+        <div class="hero-goal">距離正式開賣（10/14）還有 <strong>42 天</strong></div>
       </div>
       <div class="hero-stat">
-        <div class="val">63%</div>
-        <div class="lbl">募資前準備期進度</div>
+        <div class="val">298 / 3,000</div>
+        <div class="lbl">問卷收集份數（目標）</div>
       </div>
     </div>
-    <div class="progress-track"><div class="progress-fill" style="width:63%"></div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:9.9%"></div></div>
     <div class="progress-caption">
-      <span>6/22 專案啟動</span><span>9/2 現在</span><span>10/14 正式開賣</span>
+      <span>0 份</span><span>目前 298 份・9.9%</span><span>目標 3,000 份</span>
+    </div>
+    <div class="hero-targets">
+      <div class="hero-target">問卷成本　實際 <b>$93</b> ／ 目標 <b>$90</b> <span class="tag tag-amber" style="margin-left:4px">高於目標 3.3%</span></div>
+      <div class="hero-target">問卷轉換購買率　目標 <b>10%</b>　<span style="color:var(--muted)">（開賣後才能追蹤）</span></div>
     </div>
   </div>
 
   <div class="grid4 mb20">
     <div class="card kpi">
       <div class="icon">📝</div>
-      <div class="val">297</div>
+      <div class="val">298</div>
       <div class="lbl">問卷回收數</div>
-      <div class="sub">8/25 – 9/1，收集中</div>
+      <div class="sub">8/25 – 9/2，收集中</div>
     </div>
     <div class="card kpi">
       <div class="icon">🔥</div>
@@ -296,7 +298,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="card" style="grid-column:span 2">
       <div class="section-title">💡 重點洞察</div>
       <div class="insight-body">
-        問卷還在收集中，但已經有 297 份的樣本，加上 79% 給了 5 分以上的心動程度，代表「平板律動走步機」這個產品概念已經打中痛點。熟齡族群（45 歲以上佔 47%）明顯偏好扶手撐款，加上 Meta 廣告的 CPL 比自有渠道貴一截，接下來可以往「主推扶手款、加碼自有渠道」的方向調整。完整圖表跟建議都整理在
+        問卷還在收集中，但已經有 298 份的樣本，加上 79% 給了 5 分以上的心動程度，代表「平板律動走步機」這個產品概念已經打中痛點。熟齡族群（45 歲以上佔 47%）明顯偏好扶手撐款，加上 Meta 廣告的 CPL 比自有渠道貴一截，接下來可以往「主推扶手款、加碼自有渠道」的方向調整。完整圖表跟建議都整理在
         <a href="#" onclick="return switchTab('survey', document.querySelectorAll('nav a')[1])" style="color:var(--accent);font-weight:700;text-decoration:none">問卷成效</a> 分頁。
       </div>
     </div>
@@ -320,15 +322,15 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="mb20">
     <div class="eyebrow">Survey Insights</div>
     <h2>問卷成效與洞察</h2>
-    <div class="card-sub" style="margin-top:6px">統計期間 8/25 – 9/1（嘖嘖問卷落地頁），共 298 份有效回覆</div>
+    <div class="card-sub" style="margin-top:6px">統計期間 8/25 – 9/2（嘖嘖問卷落地頁），共 298 份有效回覆，目標 3,000 份</div>
   </div>
 
   <div class="grid4 mb20">
     <div class="card kpi">
       <div class="icon">📝</div>
-      <div class="val">297</div>
-      <div class="lbl">問卷回收總數</div>
-      <div class="sub">8/25 – 9/1</div>
+      <div class="val">298</div>
+      <div class="lbl">問卷回收數</div>
+      <div class="sub">目標 3,000 份（9.9%）</div>
     </div>
     <div class="card kpi">
       <div class="icon">🔥</div>
@@ -337,16 +339,16 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <div class="sub">n = 255（回答率 86%）</div>
     </div>
     <div class="card kpi">
-      <div class="icon">📣</div>
-      <div class="val">$156</div>
-      <div class="lbl">Meta 廣告 CPL</div>
-      <div class="sub">178 份，追蹤歸因</div>
-    </div>
-    <div class="card kpi">
       <div class="icon">💸</div>
       <div class="val">$93</div>
       <div class="lbl">混合平均 CPL</div>
-      <div class="sub">全部 297 份，含自有渠道</div>
+      <div class="sub">目標 $90，高於目標 3.3%</div>
+    </div>
+    <div class="card kpi">
+      <div class="icon">📊</div>
+      <div class="val">8.2%</div>
+      <div class="lbl">問卷回覆率</div>
+      <div class="sub">3,653 次工作階段中完成填答</div>
     </div>
   </div>
 
@@ -390,6 +392,26 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="card-title">👥 年齡層分佈</div>
     <div class="card-sub">n = 277</div>
     <div class="chart-wrap"><canvas id="chartAge"></canvas></div>
+  </div>
+
+  <div class="grid2 mb20">
+    <div class="card">
+      <div class="card-title">💼 職業分佈</div>
+      <div class="card-sub">n = 126（此題回答率 42%，已將同類職業合併）</div>
+      <div class="chart-wrap tall"><canvas id="chartOccupation"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 問卷回覆率</div>
+      <div class="card-sub">落地頁工作階段中，完成填答的比例</div>
+      <div class="meter-wrap">
+        <div class="meter-figure">8.2%</div>
+        <div class="meter-body">
+          <div class="meter-track"><div class="meter-fill" style="width:8.2%"></div></div>
+          <div class="meter-caption">298 份完成填答 ／ 3,653 次工作階段</div>
+        </div>
+      </div>
+      <div class="insight-body" style="margin-top:18px">超過 9 成的流量進了頁面卻沒有填完問卷，可以檢查問卷長度、題目順序或首題的吸引力，看看能不能把回覆率往上拉。</div>
+    </div>
   </div>
 
   <div class="grid2 mb20">
@@ -631,6 +653,32 @@ new Chart(document.getElementById('chartAge'), {
     scales:{
       x:{grid:{display:false}, ticks:{font:{size:11.5}}},
       y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, beginAtZero:true}
+    }
+  }
+});
+
+/* ===== 職業分佈（horizontal） ===== */
+new Chart(document.getElementById('chartOccupation'), {
+  type:'bar',
+  data:{
+    labels:['上班族／內勤','家管','服務／餐飲業','自由工作者','退休人士','醫護／治療師','保險業','其他'],
+    datasets:[{
+      data:[34.1,15.9,10.3,8.7,5.6,4.8,3.2,17.5],
+      backgroundColor:COLOR.accent,
+      borderRadius:4, borderSkipped:'left', maxBarThickness:22,
+      datalabels:{display:true, anchor:'end', align:'right', color:COLOR.textSoft, font:{weight:'700',size:11.5},
+        formatter:(v)=> v.toFixed(1)+'%'}
+    }]
+  },
+  options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase,
+      callbacks:{label:(ctx)=> ctx.parsed.x.toFixed(1)+'%'}}},
+    layout:{padding:{right:26}},
+    scales:{
+      x:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, max:40},
+      y:{grid:{display:false}, ticks:{font:{size:11.5}, color:COLOR.textSoft}}
     }
   }
 });
