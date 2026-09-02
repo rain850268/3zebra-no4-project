@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🦓 3ZeBra 好動力 | 專案戰情室</title>
+<title>3ZB-04 專案</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -11,24 +11,16 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 :root{
-  --bg:#F7F7F7;
-  --bg-alt:#F3F1EE;
+  --bg:#F3F1EF;
+  --bg-alt:#F3F1EF;
   --card:#FFFFFF;
   --text:#333333;
   --text-soft:#5C5A56;
   --muted:#918D86;
   --border:#E6E2DB;
   --border-soft:#EDEAE4;
-  --accent:#EB6834;
-  --accent-soft:#FBE4D8;
-  --accent-2:#2A78D6;
-  --accent-2-soft:#DCE9F9;
-  --good:#3F6B3B;
-  --good-bg:#E4EEE2;
-  --amber:#8A6316;
-  --amber-bg:#F7EAD2;
-  --critical:#A33327;
-  --critical-bg:#F8E1DE;
+  --accent:#E0B58B;
+  --accent-soft:#E3D6C8;
   --radius:16px;
   --radius-sm:10px;
   --shadow:0 1px 2px rgba(51,51,51,.04), 0 8px 24px rgba(51,51,51,.05);
@@ -46,7 +38,7 @@ body{
 /* ===== NAV ===== */
 nav{
   position:sticky;top:0;z-index:100;
-  background:rgba(247,247,247,.88);
+  background:rgba(243,241,239,.88);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
@@ -68,7 +60,7 @@ nav a{
   transition:color .15s,border-color .15s;
 }
 nav a:hover:not(.active){color:var(--text);}
-nav a.active{color:var(--accent);font-weight:500;border-bottom-color:var(--accent);}
+nav a.active{color:var(--text);font-weight:500;border-bottom-color:var(--accent);}
 
 /* ===== LAYOUT ===== */
 .tab{display:none;}
@@ -95,7 +87,7 @@ nav a.active{color:var(--accent);font-weight:500;border-bottom-color:var(--accen
 .card-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
 h2{font-size:19px;font-weight:800;letter-spacing:-.2px;}
 h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;}
-.eyebrow{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
+.eyebrow{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
 
 /* ===== HERO / STATUS CARD ===== */
 .hero{
@@ -110,8 +102,8 @@ h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-tra
 .hero-stat{text-align:right;}
 .hero-stat .val{font-size:28px;font-weight:600;line-height:1;color:var(--text);}
 .hero-stat .lbl{font-size:12px;color:var(--muted);margin-top:6px;font-weight:400;}
-.progress-track{background:var(--accent-soft);border-radius:99px;height:8px;margin:20px 0 8px;}
-.progress-fill{background:var(--accent);border-radius:99px;height:8px;transition:width .8s;}
+.progress-track{background:var(--accent);border-radius:99px;height:8px;margin:20px 0 8px;}
+.progress-fill{background:var(--accent-soft);border-radius:99px;height:8px;transition:width .8s;}
 .progress-caption{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);font-weight:400;}
 .hero-targets{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);}
 .hero-target{font-size:12.5px;color:var(--text-soft);}
@@ -123,24 +115,21 @@ h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-tra
 .kpi .val{font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.3px;}
 .kpi .lbl{font-size:12.5px;color:var(--text-soft);margin-top:4px;font-weight:400;}
 .kpi .sub{font-size:11.5px;color:var(--muted);margin-top:6px;}
-.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;}
-.tag-good{background:var(--good-bg);color:var(--good);}
-.tag-amber{background:var(--amber-bg);color:var(--amber);}
-.tag-accent{background:var(--accent-soft);color:#B14A1F;}
-.tag-blue{background:var(--accent-2-soft);color:#1F5590;}
-.tag-gray{background:var(--bg-alt);color:var(--muted);}
+.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:600;
+  background:var(--accent-soft);color:var(--text);}
+.tag-good,.tag-amber,.tag-accent,.tag-blue,.tag-gray{background:var(--accent-soft);color:var(--text);}
 
 /* ===== METER ===== */
 .meter-wrap{display:flex;align-items:center;gap:20px;}
 .meter-figure{font-size:40px;font-weight:800;color:var(--text);min-width:92px;}
 .meter-body{flex:1;}
-.meter-track{background:var(--accent-soft);border-radius:99px;height:10px;overflow:hidden;}
-.meter-fill{background:var(--accent);height:100%;border-radius:99px;transition:width 1s;}
+.meter-track{background:var(--accent);border-radius:99px;height:10px;overflow:hidden;}
+.meter-fill{background:var(--accent-soft);height:100%;border-radius:99px;transition:width 1s;}
 .meter-caption{font-size:12px;color:var(--muted);margin-top:8px;}
 
 /* ===== STACKED PROPORTION BAR ===== */
 .prop-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;background:var(--bg-alt);}
-.prop-seg{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#fff;}
+.prop-seg{display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:var(--text);}
 .prop-legend{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap;}
 .prop-legend-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-soft);}
 .prop-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0;}
@@ -158,7 +147,7 @@ h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-tra
 .tl-item.today .tl-dot{background:#fff;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);}
 .tl-date{font-size:11px;font-weight:700;color:var(--muted);}
 .tl-item.done .tl-date{color:var(--text-soft);}
-.tl-item.today .tl-date{color:var(--accent);}
+.tl-item.today .tl-date{color:var(--text);font-weight:700;}
 .tl-label{font-size:12px;font-weight:600;color:var(--text);margin-top:3px;line-height:1.35;padding:0 4px;}
 .tl-item.done .tl-label{color:var(--text-soft);}
 
@@ -181,7 +170,7 @@ tr:last-child td{border-bottom:none;}
   border-radius:0 var(--radius-sm) var(--radius-sm) 0;
   padding:16px 18px;
 }
-.insight-num{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:1px;margin-bottom:6px;}
+.insight-num{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:6px;}
 .insight-title{font-size:14px;font-weight:700;margin-bottom:6px;}
 .insight-body{font-size:13px;color:var(--text-soft);line-height:1.65;}
 
@@ -211,7 +200,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 <body>
 
 <nav>
-  <span class="nav-brand">好動力</span>
+  <span class="nav-brand">3ZeBra好動力｜平板律動走步機</span>
   <a href="#" class="active" onclick="return switchTab('overview',this)">總覽</a>
   <a href="#" onclick="return switchTab('survey',this)">問卷成效</a>
   <a href="#" onclick="return switchTab('budget',this)">預算控制</a>
@@ -299,7 +288,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <div class="section-title">💡 重點洞察</div>
       <div class="insight-body">
         問卷還在收集中，但已經有 298 份的樣本，加上 79% 給了 5 分以上的心動程度，代表「平板律動走步機」這個產品概念已經打中痛點。熟齡族群（45 歲以上佔 47%）明顯偏好扶手撐款，加上 Meta 廣告的 CPL 比自有渠道貴一截，接下來可以往「主推扶手款、加碼自有渠道」的方向調整。完整圖表跟建議都整理在
-        <a href="#" onclick="return switchTab('survey', document.querySelectorAll('nav a')[1])" style="color:var(--accent);font-weight:700;text-decoration:none">問卷成效</a> 分頁。
+        <a href="#" onclick="return switchTab('survey', document.querySelectorAll('nav a')[1])" style="color:var(--text);font-weight:700;text-decoration:underline">問卷成效</a> 分頁。
       </div>
     </div>
     <div class="card">
@@ -354,8 +343,11 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 
   <div class="grid2 mb20">
     <div class="card">
-      <div class="card-title">📈 每日問卷回收數</div>
-      <div class="card-sub">長條為單日回收，折線為累積總數</div>
+      <div class="card-title" style="justify-content:space-between">
+        <span>📈 每日問卷回收數</span>
+        <span style="font-size:12px;color:var(--muted);font-weight:400">累計 297 份</span>
+      </div>
+      <div class="card-sub">8/25 – 9/1，單日回收份數</div>
       <div class="chart-wrap"><canvas id="chartDaily"></canvas></div>
     </div>
     <div class="card">
@@ -372,7 +364,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <div class="prop-bar" id="propStyle"></div>
       <div class="prop-legend">
         <div class="prop-legend-item"><span class="prop-dot" style="background:var(--accent)"></span>扶手撐款｜長輩更安心（59.8%）</div>
-        <div class="prop-legend-item"><span class="prop-dot" style="background:var(--accent-2)"></span>超薄機身｜小坪數友善（40.2%）</div>
+        <div class="prop-legend-item"><span class="prop-dot" style="background:var(--accent-soft)"></span>超薄機身｜小坪數友善（40.2%）</div>
       </div>
     </div>
     <div class="card">
@@ -559,11 +551,11 @@ Chart.register(ChartDataLabels);
 Chart.defaults.set('plugins.datalabels', {display:false});
 
 const COLOR = {
-  accent:'#EB6834', accent2:'#2A78D6', text:'#333333', textSoft:'#5C5A56',
+  accent:'#E0B58B', accentSoft:'#E3D6C8', text:'#333333', textSoft:'#5C5A56',
   muted:'#918D86', grid:'#E6E2DB', surface:'#FFFFFF'
 };
-const BLUE_RAMP7 = ['#86b6ef','#6da7ec','#5598e7','#3987e5','#2a78d6','#1c5cab','#104281']; // 心動指數 1→7
-const BLUE_RAMP6 = ['#86b6ef','#6da7ec','#3987e5','#2a78d6','#1c5cab','#104281']; // 年齡層 6 桶
+const TAN_RAMP7 = ['#F3E3D3','#F0DBC7','#EDD4BB','#EACCAF','#E6C4A3','#E3BD97','#E0B58B']; // 心動指數 1→7
+const TAN_RAMP6 = ['#F2E0CE','#EED7C1','#EBCFB3','#E7C6A6','#E4BE98','#E0B58B']; // 年齡層 6 桶
 
 const tooltipBase = {
   backgroundColor:'#333333', titleColor:'#fff', bodyColor:'#fff',
@@ -571,38 +563,22 @@ const tooltipBase = {
   displayColors:false
 };
 
-/* ===== 每日問卷回收數（bar + cumulative line） ===== */
+/* ===== 每日問卷回收數 ===== */
 new Chart(document.getElementById('chartDaily'), {
   type:'bar',
   data:{
     labels:['8/25','8/26','8/27','8/28','8/29','8/30','8/31','9/1'],
-    datasets:[
-      {
-        type:'bar', label:'單日回收', data:[4,79,46,31,21,42,28,46],
-        backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom',
-        maxBarThickness:24, order:2
-      },
-      {
-        type:'line', label:'累積總數', data:[4,83,129,160,181,223,251,297],
-        borderColor:COLOR.accent2, backgroundColor:COLOR.accent2, borderWidth:2,
-        pointRadius:4, pointBackgroundColor:COLOR.accent2, pointBorderColor:'#fff', pointBorderWidth:2,
-        tension:.3, yAxisID:'y', order:1,
-        datalabels:{
-          display:(ctx)=> ctx.dataIndex === ctx.dataset.data.length-1,
-          align:'top', anchor:'end', color:COLOR.accent2, font:{weight:'700',size:12},
-          formatter:(v)=> v.toLocaleString()+' 份'
-        }
-      }
-    ]
+    datasets:[{
+      data:[4,79,46,31,21,42,28,46],
+      backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom',
+      maxBarThickness:28,
+      datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:11}}
+    }]
   },
   options:{
     responsive:true, maintainAspectRatio:false,
-    interaction:{mode:'index', intersect:false},
-    plugins:{
-      legend:{display:true, position:'top', align:'start', labels:{boxWidth:8, boxHeight:8, usePointStyle:true, font:{size:11.5}}},
-      tooltip:{...tooltipBase}
-    },
-    layout:{padding:{top:6, right:36}},
+    plugins:{legend:{display:false}, tooltip:{...tooltipBase}},
+    layout:{padding:{top:18}},
     scales:{
       x:{grid:{display:false}, ticks:{font:{size:11}}},
       y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{font:{size:11}}, beginAtZero:true}
@@ -617,7 +593,7 @@ new Chart(document.getElementById('chartExcite'), {
     labels:['1分','2分','3分','4分','5分','6分','7分'],
     datasets:[{
       data:[3,2,10,39,94,45,62],
-      backgroundColor:BLUE_RAMP7,
+      backgroundColor:TAN_RAMP7,
       borderRadius:4, borderSkipped:'bottom', maxBarThickness:34,
       datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:11}}
     }]
@@ -639,7 +615,7 @@ new Chart(document.getElementById('chartAge'), {
     labels:['25 歲以下','25–35','35–45','45–55','55–65','65 歲以上'],
     datasets:[{
       data:[7,63,71,88,43,5],
-      backgroundColor:BLUE_RAMP6,
+      backgroundColor:TAN_RAMP6,
       borderRadius:4, borderSkipped:'bottom', maxBarThickness:46,
       datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:11},
         formatter:(v,ctx)=> v + ' 人（' + (v/277*100).toFixed(1) + '%）'}
@@ -741,7 +717,7 @@ new Chart(document.getElementById('chartFeature'), {
   el.innerHTML =
     '<div class="prop-seg" style="width:59.8%;background:var(--accent)">59.8%</div>' +
     '<div style="width:2px;background:var(--bg)"></div>' +
-    '<div class="prop-seg" style="width:40.2%;background:var(--accent-2)">40.2%</div>';
+    '<div class="prop-seg" style="width:40.2%;background:var(--accent-soft)">40.2%</div>';
 })();
 </script>
 
