@@ -580,7 +580,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="mb20">
     <div class="eyebrow">Push Performance</div>
     <h2>行銷推播成效</h2>
-    <div class="card-sub" style="margin-top:6px">LINE 推播 8/26、10/9–10/14 共 5 則；EDM 10/2–10/14 共 8 封（含 A／B 測試）</div>
+    <div class="card-sub" style="margin-top:6px">LINE 推播 8/26–10/14 共 8 則（含官方後台 5 則＋ Omnichat 問卷名單 3 則）；EDM 10/2–10/14 共 8 封（含 A／B 測試）</div>
   </div>
 
   <!-- LINE -->
@@ -588,36 +588,39 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="card-title">📱 LINE 推播</div>
     <div class="grid4 mb20" style="margin-top:14px">
       <div class="card kpi" style="box-shadow:none;border:1px solid var(--border-soft)">
-        <div class="val" style="font-size:20px">5 則</div>
+        <div class="val" style="font-size:20px">8 則</div>
         <div class="lbl">推播則數</div>
       </div>
       <div class="card kpi" style="box-shadow:none;border:1px solid var(--border-soft)">
-        <div class="val" style="font-size:20px">133,757</div>
+        <div class="val" style="font-size:20px">137,680</div>
         <div class="lbl">累積受眾人次</div>
       </div>
       <div class="card kpi" style="box-shadow:none;border:1px solid var(--border-soft)">
-        <div class="val" style="font-size:20px">33.7%</div>
+        <div class="val" style="font-size:20px">33.1%</div>
         <div class="lbl">平均已讀率</div>
       </div>
       <div class="card kpi" style="box-shadow:none;border:1px solid var(--border-soft)">
-        <div class="val" style="font-size:20px">0.71%</div>
+        <div class="val" style="font-size:20px">0.81%</div>
         <div class="lbl">平均點擊率</div>
       </div>
     </div>
-    <div class="chart-wrap"><canvas id="chartPushLine"></canvas></div>
+    <div class="chart-wrap tall"><canvas id="chartPushLine"></canvas></div>
     <div class="tbl-scroll" style="margin-top:20px">
       <table>
         <thead><tr><th>推播主題</th><th>推播時間</th><th style="text-align:right">受眾人數</th><th style="text-align:right">已讀率</th><th style="text-align:right">點擊率</th></tr></thead>
         <tbody>
           <tr><td>好動力｜0826｜問卷上線</td><td>8/26</td><td style="text-align:right">53,343</td><td style="text-align:right">28.2%</td><td style="text-align:right">0.43%</td></tr>
           <tr><td>好動力｜1009｜上線倒數五天－問卷</td><td>10/9</td><td style="text-align:right">483</td><td style="text-align:right">42.0%</td><td style="text-align:right"><strong>3.73%</strong></td></tr>
-          <tr><td>好動力｜1012｜上線倒數三天－其他</td><td>10/12</td><td style="text-align:right">13,907</td><td style="text-align:right">60.1%</td><td style="text-align:right">0.59%</td></tr>
+          <tr><td>好動力問卷｜上線倒數 3 天！限量⋯</td><td>10/12 13:01</td><td style="text-align:right">1,320</td><td style="text-align:right">20.8%</td><td style="text-align:right">6.0%</td></tr>
+          <tr><td>好動力｜1012｜上線倒數三天－其他</td><td>10/12 18:00</td><td style="text-align:right">13,907</td><td style="text-align:right">60.1%</td><td style="text-align:right">0.59%</td></tr>
+          <tr><td>好動力問卷｜就是今天！好動力正式開賣⋯</td><td>10/14 04:59</td><td style="text-align:right">1,306</td><td style="text-align:right">5.9%</td><td style="text-align:right">1.9%</td></tr>
           <tr><td>好動力｜1014｜正式開賣</td><td>10/14 中午</td><td style="text-align:right">55,272</td><td style="text-align:right">24.9%</td><td style="text-align:right">0.83%</td></tr>
+          <tr><td>好動力問卷｜上班族的心聲，我們聽到了！⋯</td><td>10/14 13:01</td><td style="text-align:right">1,297</td><td style="text-align:right">11.7%</td><td style="text-align:right"><strong>4.9%</strong></td></tr>
           <tr><td>好動力｜1014｜緊急加開</td><td>10/14 晚間</td><td style="text-align:right">10,752</td><td style="text-align:right">71.8%</td><td style="text-align:right">1.52%</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 此表為推播本身的開信／點擊成效，訂單無法對應到單一則推播；LINE 渠道整體歸因訂單 28 筆、營收 $212,868，詳見總覽「訂單來源分佈」</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊「好動力問卷」開頭的 3 則是透過 Omnichat 單獨發送給問卷填答名單的 LINE 推播，跟官方後台對全員發送的 5 則是不同名單；此表為推播本身的開信／點擊成效，訂單無法對應到單一則推播；LINE 渠道整體歸因訂單 28 筆、營收 $212,868，詳見總覽「訂單來源分佈」。點擊率欄位中 Omnichat 的「點擊的用戶」為不重複人數，官方後台的「點擊數」為點擊次數，兩者計算基礎略有不同</p>
   </div>
 
   <!-- EDM -->
@@ -1019,9 +1022,9 @@ new Chart(document.getElementById('chartRoasDaily'), {
 new Chart(document.getElementById('chartPushLine'), {
   type:'bar',
   data:{
-    labels:['0826 問卷上線','1009 倒數五天－問卷','1012 倒數三天－其他','1014 正式開賣','1014 緊急加開'],
+    labels:['0826 問卷上線','1009 倒數五天－問卷','1012 倒數三天（問卷）','1012 倒數三天－其他','1014 就是今天（問卷）','1014 正式開賣','1014 上班族心聲（問卷）','1014 緊急加開'],
     datasets:[{
-      data:[28.2,42.0,60.1,24.9,71.8],
+      data:[28.2,42.0,20.8,60.1,5.9,24.9,11.7,71.8],
       backgroundColor:COLOR.accent,
       borderRadius:4, borderSkipped:'left', maxBarThickness:26,
       datalabels:{display:true, anchor:'end', align:'right', color:COLOR.textSoft, font:{weight:'700',size:11.5},
