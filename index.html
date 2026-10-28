@@ -134,23 +134,6 @@ h3{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--muted);text-tra
 .prop-legend-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-soft);}
 .prop-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0;}
 
-/* ===== TIMELINE ===== */
-.timeline-scroll{overflow-x:auto;padding-bottom:6px;}
-.timeline{display:flex;gap:0;min-width:max-content;padding:8px 4px 4px;}
-.tl-item{display:flex;flex-direction:column;align-items:center;width:128px;position:relative;text-align:center;}
-.tl-item::before{
-  content:"";position:absolute;top:9px;left:-64px;width:128px;height:2px;background:var(--border);z-index:0;
-}
-.tl-item:first-child::before{display:none;}
-.tl-dot{width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--border);z-index:1;margin-bottom:10px;}
-.tl-item.done .tl-dot{background:var(--accent);border-color:var(--accent);}
-.tl-item.today .tl-dot{background:#fff;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);}
-.tl-date{font-size:11px;font-weight:700;color:var(--muted);}
-.tl-item.done .tl-date{color:var(--text-soft);}
-.tl-item.today .tl-date{color:var(--text);font-weight:700;}
-.tl-label{font-size:12px;font-weight:600;color:var(--text);margin-top:3px;line-height:1.35;padding:0 4px;}
-.tl-item.done .tl-label{color:var(--text-soft);}
-
 /* ===== CHART ===== */
 .chart-wrap{position:relative;height:270px;}
 .chart-wrap.tall{height:320px;}
@@ -234,7 +217,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <span>10/14 開賣</span><span>距離早鳥截止還有 27 天</span><span>11/23 早鳥截止</span>
     </div>
     <div class="hero-targets">
-      <div class="hero-target">問卷轉換購買率　實際 <b>2.2%</b> ／ 目標 <b>10%</b> <span class="tag" style="margin-left:4px">10/20 數據，本週無新訂單明細可比對更新</span></div>
+      <div class="hero-target">問卷轉換購買率　實際 <b>2.4%</b> ／ 目標 <b>10%</b> <span class="tag" style="margin-left:4px">10/27 訂單明細更新</span></div>
       <div class="hero-target">整體 ROAS　<b>4.2</b>　<span style="color:var(--muted)">（FB 廣告費累積 $243,205，戰情表口徑）</span></div>
     </div>
   </div>
@@ -260,86 +243,75 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     </div>
     <div class="card kpi">
       <div class="icon">📊</div>
-      <div class="val">2.2%</div>
+      <div class="val">2.4%</div>
       <div class="lbl">問卷轉換購買率</div>
-      <div class="sub">67 份問卷比對到訂單 ／ 3,037 份（10/20）</div>
+      <div class="sub">73 份問卷比對到訂單 ／ 3,037 份（10/27 訂單明細）</div>
     </div>
   </div>
 
   <div class="card mb20">
-    <div class="section-title">🗓️ 專案時程軸</div>
-    <div class="timeline-scroll">
-      <div class="timeline">
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">7/13</div><div class="tl-label">產品定位定案</div></div>
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">8/26</div><div class="tl-label">嘖嘖提案 ／<br>網紅體驗會</div></div>
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">9/2</div><div class="tl-label">體驗會<br>影片製作</div></div>
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">10/1</div><div class="tl-label">問卷 88% 達標</div></div>
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">10/7</div><div class="tl-label">FB<br>開賣預告</div></div>
-        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-date">10/14</div><div class="tl-label">問卷收案<br>🎉 正式開賣</div></div>
-        <div class="tl-item today"><div class="tl-dot"></div><div class="tl-date">10/27</div><div class="tl-label">今天</div></div>
-        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">10/28</div><div class="tl-label">嘖嘖首批出貨</div></div>
-        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">11/23</div><div class="tl-label">早鳥截止</div></div>
-        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">11/25<br>–12/16</div><div class="tl-label">分 4 批<br>陸續出貨</div></div>
-      </div>
-    </div>
+    <div class="section-title">📈 每週 ROAS 走勢（廣告、推播）</div>
+    <div class="card-sub">廣告 ROAS＝戰情表口徑（總營收 ÷ FB 廣告費）；推播 ROAS＝推播歸因訂單金額 ÷ 推播成本（EDM $0.1／封、SMS $1／封、LINE $0.4／封，依宜庭提供費率估算）</div>
+    <div class="chart-wrap" style="margin-top:14px"><canvas id="chartRoasWeekly"></canvas></div>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 推播 ROAS 只計算有點到專屬連結、被歸因到訂單的部分，很多人收到推播後是直接進嘖嘖站內下單、沒點連結，不會算進這個數字，所以實際帶動的效果可能比看到的更好；第二週推播 ROAS 明顯下滑（7.4→0.7）主要是 10/21「地墊只到今天」這波大量發送只歸因到 1 筆訂單，廣告端則相對穩定</p>
   </div>
 
   <div class="grid2 mb20">
     <div class="card">
       <div class="section-title">📊 問卷轉換購買率</div>
       <div style="text-align:center;padding:16px 0 8px">
-        <div style="font-size:32px;font-weight:700;color:var(--text)">2.21%</div>
+        <div style="font-size:32px;font-weight:700;color:var(--text)">2.40%</div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px">（填問卷 ∩ 購買）／ 問卷份數</div>
-        <div style="font-size:12px;color:var(--muted)">67 份問卷比對到訂單 ／ 3,037 份問卷</div>
+        <div style="font-size:12px;color:var(--muted)">73 份問卷比對到訂單 ／ 3,037 份問卷</div>
       </div>
       <div style="border-top:1px solid var(--border);margin-top:10px;padding-top:12px">
         <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:8px;letter-spacing:.5px">填答週次轉換分佈</div>
         <table style="width:100%;font-size:12px;margin:0">
           <tbody>
             <tr><td>W1 8/25–8/31</td><td style="text-align:right">1.20%</td><td style="text-align:right;color:var(--muted)">3 份</td></tr>
-            <tr><td>W2 9/1–9/7</td><td style="text-align:right">2.91%</td><td style="text-align:right;color:var(--muted)">12 份</td></tr>
+            <tr><td>W2 9/1–9/7</td><td style="text-align:right">3.16%</td><td style="text-align:right;color:var(--muted)">13 份</td></tr>
             <tr><td>W3 9/8–9/14</td><td style="text-align:right">0.73%</td><td style="text-align:right;color:var(--muted)">3 份</td></tr>
-            <tr><td>W4 9/15–9/21</td><td style="text-align:right">0.96%</td><td style="text-align:right;color:var(--muted)">6 份</td></tr>
-            <tr><td>W5 9/22–9/28</td><td style="text-align:right">2.05%</td><td style="text-align:right;color:var(--muted)">15 份</td></tr>
-            <tr><td>W6 9/29–10/5</td><td style="text-align:right">3.06%</td><td style="text-align:right;color:var(--muted)">14 份</td></tr>
+            <tr><td>W4 9/15–9/21</td><td style="text-align:right">1.12%</td><td style="text-align:right;color:var(--muted)">7 份</td></tr>
+            <tr><td>W5 9/22–9/28</td><td style="text-align:right">2.46%</td><td style="text-align:right;color:var(--muted)">18 份</td></tr>
+            <tr><td>W6 9/29–10/5</td><td style="text-align:right">3.28%</td><td style="text-align:right;color:var(--muted)">15 份</td></tr>
             <tr style="font-weight:700"><td>W7 10/6–10/13</td><td style="text-align:right;color:var(--text)">9.46%</td><td style="text-align:right">14 份</td></tr>
           </tbody>
         </table>
       </div>
       <div style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5">
-        ※ email／電話精準比對；越晚填問卷的人轉換率越高，最後一週（W7）已逼近 10% 目標，推測跟開賣時間點越近、記憶猶新有關
+        ※ email／電話精準比對；用 10/27 完整訂單明細重算（上次是 10/20 的估算），全部週次轉換率都比照上次持平或微升，越晚填問卷的人轉換率越高，最後一週（W7）維持在 9.46%、逼近 10% 目標，這個「時間遞減」模式隨著資料變完整依然成立
       </div>
     </div>
     <div class="card">
       <div class="section-title">🎯 訂單來源分佈</div>
-      <div class="card-sub">依嘖嘖「導購」欄位歸因，n = 133（戰情表累積訂單數）</div>
+      <div class="card-sub">依訂單明細「導購」欄位逐筆歸因，n = 126（10/27 訂單明細）</div>
       <div style="display:flex;flex-direction:column;gap:14px;margin-top:4px">
         <div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">影片／廣告素材</span><span style="color:var(--muted)">49 筆｜$390,229</span></div>
-          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:36.8%;background:var(--accent);height:8px;border-radius:99px"></div></div>
+          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:38.9%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
         <div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">無歸因（直接／自然）</span><span style="color:var(--muted)">40 筆｜$253,996</span></div>
-          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:30.1%;background:var(--accent);height:8px;border-radius:99px"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">無歸因（直接／自然）</span><span style="color:var(--muted)">33 筆｜$253,996</span></div>
+          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:26.2%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
         <div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">LINE</span><span style="color:var(--muted)">28 筆｜$213,619</span></div>
-          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:21.1%;background:var(--accent);height:8px;border-radius:99px"></div></div>
+          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:22.2%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
         <div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">EDM</span><span style="color:var(--muted)">11 筆｜$78,938</span></div>
-          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:8.3%;background:var(--accent);height:8px;border-radius:99px"></div></div>
+          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:8.7%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
         <div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">KOL 標記</span><span style="color:var(--muted)">4 筆｜$33,708</span></div>
-          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:3.0%;background:var(--accent);height:8px;border-radius:99px"></div></div>
+          <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:3.2%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
         <div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="font-weight:600">FB</span><span style="color:var(--muted)">1 筆｜$7,840</span></div>
           <div style="background:var(--accent-soft);border-radius:99px;height:8px"><div style="width:0.8%;background:var(--accent);height:8px;border-radius:99px"></div></div>
         </div>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:12px">＊「影片／廣告素材」這一週明顯擴大，Josh（健身痛點產品）跟 ANDREW（產品介紹）兩支創作者影片各自帶動 12 筆與 6 筆訂單，是這週成長最多的兩個連結，詳見 KOL 分頁</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:12px">＊ 改用 10/27 訂單明細逐筆歸因（比上次用導購代碼表推算更準），筆數、金額幾乎一致，只有「無歸因」從 40 筆修正為 33 筆——戰情表累積 133 筆訂單裡有 7 筆沒出現在這份訂單明細（集中在 10/14–10/18 開賣初期，推測是匯出時間差異），佔比不到 6%，不影響整體分佈結論；「影片／廣告素材」仍是第一名，Josh（健身痛點產品）跟 ANDREW（產品介紹）兩支創作者影片各自帶動 12 筆與 6 筆訂單，詳見 KOL 分頁</p>
     </div>
   </div>
 
@@ -358,7 +330,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="card" style="grid-column:span 2">
       <div class="section-title">💡 重點洞察</div>
       <div class="insight-body">
-        開賣 14 天，累積募資 <strong>$978,330</strong>，133 筆訂單，平均客單價 $7,765，整體 ROAS 4.2。10/21–10/26 這幾天 ROAS 大多落在 1.5–2.9，比第一週明顯更低，直到 10/27 又回升到 5.2，波動比較大。這週最大的變化是「影片／廣告素材」一口氣衝上訂單來源第一名（36.8%，$390,229），超越 LINE（21.1%）——主要是 Josh 的健身痛點影片跟 ANDREW 的產品介紹影片這兩支素材帶動，詳見 KOL 分頁。問卷轉換購買率這週沒有新的訂單明細可以比對，暫時維持 10/20 的 2.21%。完整的推播成效跟商品銷售明細都整理在
+        開賣 14 天，累積募資 <strong>$978,330</strong>，133 筆訂單，平均客單價 $7,765，整體 ROAS 4.2。拆成兩週來看，廣告 ROAS 從第一週 5.6 倍降到第二週 2.7 倍；推播 ROAS 更明顯，從 7.4 倍一口氣掉到 0.7 倍，主要是 10/21「地墊只到今天」這波雖然發送量大，但歸因到的訂單只有 1 筆，詳見上方「每週 ROAS 走勢」。這週最大的變化是「影片／廣告素材」一口氣衝上訂單來源第一名（38.9%，$390,229），超越 LINE（22.2%）——主要是 Josh 的健身痛點影片跟 ANDREW 的產品介紹影片這兩支素材帶動，詳見 KOL 分頁。拿到完整訂單明細後，問卷轉換購買率重新算出來是 <strong>2.40%</strong>（73 份問卷比對到訂單），比 10/20 的估算微幅上修，最後一週填問卷的人轉換率仍維持 9.46%。完整的推播成效跟商品銷售明細都整理在
         <a href="#" onclick="return switchTab('push', document.querySelectorAll('nav a')[5])" style="color:var(--text);font-weight:700;text-decoration:underline">行銷推播</a> 跟
         <a href="#" onclick="return switchTab('products', document.querySelectorAll('nav a')[6])" style="color:var(--text);font-weight:700;text-decoration:underline">產品購買</a> 分頁。
       </div>
@@ -366,7 +338,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="card">
       <div class="section-title">📌 下一步</div>
       <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-soft)">
-        <div>① 10/21–10/26 ROAS 偏低，評估是否需要加碼 Josh／ANDREW 這類高效影片素材</div>
+        <div>① 第二週廣告、推播 ROAS 雙雙下滑，評估是否需要加碼 Josh／ANDREW 這類高效影片素材，推播則可留意追蹤連結的曝光度</div>
         <div>② 10/28 第一批出貨，確認庫存與出貨流程就緒（扶手款剩 62 台）</div>
         <div>③ 早鳥截止倒數 27 天，準備截止前的衝刺推播</div>
       </div>
@@ -389,7 +361,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="card mb20" style="border-left:3px solid var(--accent)">
     <div class="card-title">📋 7 週收案總結</div>
     <div class="insight-body">
-      從 8/25 到 10/13，整整 7 週、3,037 份問卷，「平板律動走步機」這個產品概念得到了紮實的驗證：79% 的人給出 5 分以上的心動程度，扶手撐款以 71.9% 大幅領先超薄款，三大痛點（下班太累、健身房貴、器材閒置）從第一週到最後一週排序幾乎沒變過。問卷回收量從開案第一天的 4 份，一路衝到單日破百，整體 CPL 平均 $97，中間經歷過一次明顯的上升（9 月中旬一度衝到 $123），換素材後成功壓回來。開放意見裡，價格跟規格（承重、故障率）是從頭到尾最常被問到的兩件事。10/14 開賣後，這批問卷名單的轉換率也終於有答案了：整體 2.21%，但最後一週填問卷的人轉換率衝到 9.46%，證明名單本身是有效的，完整的轉換率分析在
+      從 8/25 到 10/13，整整 7 週、3,037 份問卷，「平板律動走步機」這個產品概念得到了紮實的驗證：79% 的人給出 5 分以上的心動程度，扶手撐款以 71.9% 大幅領先超薄款，三大痛點（下班太累、健身房貴、器材閒置）從第一週到最後一週排序幾乎沒變過。問卷回收量從開案第一天的 4 份，一路衝到單日破百，整體 CPL 平均 $97，中間經歷過一次明顯的上升（9 月中旬一度衝到 $123），換素材後成功壓回來。開放意見裡，價格跟規格（承重、故障率）是從頭到尾最常被問到的兩件事。10/14 開賣後，這批問卷名單的轉換率也終於有答案了：整體 2.40%，但最後一週填問卷的人轉換率衝到 9.46%，證明名單本身是有效的，完整的轉換率分析在
       <a href="#" onclick="return switchTab('overview', document.querySelectorAll('nav a')[0])" style="color:var(--text);font-weight:700;text-decoration:underline">總覽</a> 分頁。
     </div>
   </div>
@@ -610,7 +582,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
         <div style="font-size:12px;color:var(--muted)">達成率 33.3%</div>
       </div>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:18px">＊ 原始規劃預估問卷數量 3,000 份、問卷成本 $90、問卷轉換購買率 10%；實際最終問卷 3,037 份、CPL $97、轉換率 2.21%（最新一週 9.46%），詳見問卷成效與總覽分頁</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:18px">＊ 原始規劃預估問卷數量 3,000 份、問卷成本 $90、問卷轉換購買率 10%；實際最終問卷 3,037 份、CPL $97、轉換率 2.40%（最新一週 9.46%），詳見問卷成效與總覽分頁</p>
   </div>
 
 </div></div>
@@ -839,7 +811,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="mb20">
     <div class="eyebrow">Product Sales</div>
     <h2>產品購買狀況</h2>
-    <div class="card-sub" style="margin-top:6px">統計期間 10/14 – 10/27，主選項訂單數依嘖嘖後台「贊助選項分布」圖表，金額為依官網定價估算（本週無訂單明細可用實際金額）</div>
+    <div class="card-sub" style="margin-top:6px">統計期間 10/14 – 10/27，依 10/27 訂單明細逐筆統計（上次是嘖嘖後台圖表＋定價估算，這次改用實際金額）</div>
   </div>
 
   <div class="grid3 mb20">
@@ -850,59 +822,59 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 
   <div class="card mb20">
     <div class="card-title">📦 方案銷售分布</div>
-    <div class="card-sub">依訂單數排序，金額為訂單數 × 官網定價估算，僅供參考</div>
+    <div class="card-sub">依訂單數排序，金額為訂單明細實際總金額（已反映折扣碼）</div>
     <div style="margin-top:16px">
       <div style="margin-bottom:18px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <span style="font-weight:600;font-size:14px">早鳥 1 入｜扶手款</span>
-          <span style="font-size:13px;color:var(--muted)">50 筆｜約 $399,500</span>
+          <span style="font-size:13px;color:var(--muted)">50 筆｜$412,449</span>
         </div>
         <div style="background:var(--accent-soft);border-radius:99px;height:10px"><div style="width:39.7%;background:var(--accent);height:10px;border-radius:99px"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 39.7%</span><span>業績佔比約 40.7%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 39.7%</span><span>業績佔比 42.2%</span></div>
       </div>
       <div style="margin-bottom:18px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <span style="font-weight:600;font-size:14px">限量｜安心全配動動組</span>
-          <span style="font-size:13px;color:var(--muted)">30 筆｜約 $239,700</span>
+          <span style="font-size:13px;color:var(--muted)">30 筆｜$229,250</span>
         </div>
         <div style="background:var(--accent-soft);border-radius:99px;height:10px"><div style="width:23.8%;background:var(--accent);height:10px;border-radius:99px"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 23.8%</span><span>業績佔比約 24.4%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 23.8%</span><span>業績佔比 23.4%</span></div>
       </div>
       <div style="margin-bottom:18px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <span style="font-weight:600;font-size:14px">早鳥 1 入｜平板款</span>
-          <span style="font-size:13px;color:var(--muted)">26 筆｜約 $181,740</span>
+          <span style="font-size:13px;color:var(--muted)">26 筆｜$180,931</span>
         </div>
         <div style="background:var(--accent-soft);border-radius:99px;height:10px"><div style="width:20.6%;background:var(--accent);height:10px;border-radius:99px"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 20.6%</span><span>業績佔比約 18.5%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 20.6%</span><span>業績佔比 18.5%</span></div>
       </div>
       <div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <span style="font-weight:600;font-size:14px">加開｜安心全配動動組</span>
-          <span style="font-size:13px;color:var(--muted)">20 筆｜約 $159,800</span>
+          <span style="font-size:13px;color:var(--muted)">20 筆｜$155,700</span>
         </div>
         <div style="background:var(--accent-soft);border-radius:99px;height:10px"><div style="width:15.9%;background:var(--accent);height:10px;border-radius:99px"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 15.9%</span><span>業績佔比約 16.3%</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px"><span>訂單佔比 15.9%</span><span>業績佔比 15.9%</span></div>
       </div>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:12px">＊ 4 款合計估算金額 $980,740，跟戰情表實際累積募資 $978,330 只差 0.2%，估算誤差很小；扶手款（含早鳥＋兩組安心全配）合計貢獻超過 6 成訂單，跟問卷裡扶手款偏好度 71.9% 遙遙領先的結果一致</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px">＊ 改用訂單明細實際金額後，4 款合計 $978,330，跟戰情表完全一致（上次用定價估算只差 0.2%，誤差本來就很小）；扶手款（含早鳥＋兩組安心全配）合計貢獻超過 6 成訂單，跟問卷裡扶手款偏好度 71.9% 遙遙領先的結果一致</p>
   </div>
 
   <div class="card mb20">
     <div class="card-title">📋 方案明細</div>
     <div class="tbl-scroll">
       <table>
-        <thead><tr><th>方案</th><th style="text-align:right">訂單數</th><th style="text-align:right">估算金額</th><th style="text-align:right">定價</th><th style="text-align:right">估算業績佔比</th></tr></thead>
+        <thead><tr><th>方案</th><th style="text-align:right">訂單數</th><th style="text-align:right">實際金額</th><th style="text-align:right">定價</th><th style="text-align:right">業績佔比</th></tr></thead>
         <tbody>
-          <tr><td>早鳥 1 入｜扶手款</td><td style="text-align:right">50</td><td style="text-align:right">$399,500</td><td style="text-align:right">$7,990</td><td style="text-align:right">40.7%</td></tr>
-          <tr><td>限量｜安心全配動動組</td><td style="text-align:right">30</td><td style="text-align:right">$239,700</td><td style="text-align:right">$7,990</td><td style="text-align:right">24.4%</td></tr>
-          <tr><td>早鳥 1 入｜平板款</td><td style="text-align:right">26</td><td style="text-align:right">$181,740</td><td style="text-align:right">$6,990</td><td style="text-align:right">18.5%</td></tr>
-          <tr><td>加開｜安心全配動動組</td><td style="text-align:right">20</td><td style="text-align:right">$159,800</td><td style="text-align:right">$7,990</td><td style="text-align:right">16.3%</td></tr>
-          <tr style="font-weight:700;border-top:2px solid var(--border)"><td>合計（估算）</td><td style="text-align:right">126</td><td style="text-align:right">$980,740</td><td style="text-align:right">－</td><td style="text-align:right">100%</td></tr>
+          <tr><td>早鳥 1 入｜扶手款</td><td style="text-align:right">50</td><td style="text-align:right">$412,449</td><td style="text-align:right">$7,990</td><td style="text-align:right">42.2%</td></tr>
+          <tr><td>限量｜安心全配動動組</td><td style="text-align:right">30</td><td style="text-align:right">$229,250</td><td style="text-align:right">$7,990</td><td style="text-align:right">23.4%</td></tr>
+          <tr><td>早鳥 1 入｜平板款</td><td style="text-align:right">26</td><td style="text-align:right">$180,931</td><td style="text-align:right">$6,990</td><td style="text-align:right">18.5%</td></tr>
+          <tr><td>加開｜安心全配動動組</td><td style="text-align:right">20</td><td style="text-align:right">$155,700</td><td style="text-align:right">$7,990</td><td style="text-align:right">15.9%</td></tr>
+          <tr style="font-weight:700;border-top:2px solid var(--border)"><td>合計</td><td style="text-align:right">126</td><td style="text-align:right">$978,330</td><td style="text-align:right">－</td><td style="text-align:right">100%</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 本週無訂單明細，以定價 × 數量估算，實際金額依折扣碼略有差異；戰情表實際累積募資 $978,330 與估算僅差 0.2%</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 10/27 訂單明細逐筆統計，金額已反映折扣碼實際折扣，4 款合計 $978,330 跟戰情表累積募資完全一致</p>
   </div>
 
   <div class="card mb20">
@@ -932,11 +904,11 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <table>
         <thead><tr><th>折扣碼</th><th style="text-align:right">使用筆數</th><th style="text-align:right">佔比</th><th>說明</th></tr></thead>
         <tbody>
-          <tr><td>new150</td><td style="text-align:right">82</td><td style="text-align:right">61.7%</td><td style="color:var(--muted);font-size:12px">折 $150，Meta 廣告－新客</td></tr>
-          <tr><td>zec500</td><td style="text-align:right">29</td><td style="text-align:right">21.8%</td><td style="color:var(--muted);font-size:12px">折 $500，問卷好友專屬優惠</td></tr>
-          <tr><td>VVIP</td><td style="text-align:right">3</td><td style="text-align:right">2.3%</td><td style="color:var(--muted);font-size:12px">折 $500，私域社群專屬優惠</td></tr>
+          <tr><td>new150</td><td style="text-align:right">82</td><td style="text-align:right">65.1%</td><td style="color:var(--muted);font-size:12px">折 $150，Meta 廣告－新客</td></tr>
+          <tr><td>zec500</td><td style="text-align:right">29</td><td style="text-align:right">23.0%</td><td style="color:var(--muted);font-size:12px">折 $500，問卷好友專屬優惠</td></tr>
+          <tr><td>VVIP</td><td style="text-align:right">3</td><td style="text-align:right">2.4%</td><td style="color:var(--muted);font-size:12px">折 $500，私域社群專屬優惠</td></tr>
           <tr><td>ding200</td><td style="text-align:right">1</td><td style="text-align:right">0.8%</td><td style="color:var(--muted);font-size:12px">折 $200，丁丁團購優惠</td></tr>
-          <tr><td>未使用折扣碼</td><td style="text-align:right">18</td><td style="text-align:right">13.5%</td><td style="color:var(--muted);font-size:12px">—</td></tr>
+          <tr><td>未使用折扣碼</td><td style="text-align:right">11</td><td style="text-align:right">8.7%</td><td style="color:var(--muted);font-size:12px">—</td></tr>
         </tbody>
       </table>
     </div>
@@ -956,7 +928,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="grid3 mb20">
     <div class="card kpi"><div class="icon">🎟️</div><div class="val">115</div><div class="lbl">使用總筆數</div></div>
     <div class="card kpi"><div class="icon">💰</div><div class="val">$887,845</div><div class="lbl">折扣碼帶動金額</div></div>
-    <div class="card kpi"><div class="icon">📊</div><div class="val">86.5%</div><div class="lbl">訂單使用折扣碼比例（約）</div></div>
+    <div class="card kpi"><div class="icon">📊</div><div class="val">91.3%</div><div class="lbl">訂單使用折扣碼比例</div></div>
   </div>
 
   <div class="card mb20">
@@ -972,7 +944,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ new150 這週用量幾乎翻倍（55→82 筆），持續是帶動訂單與金額最多的折扣碼；zec500 穩定成長中，專屬問卷好友，直接反映在 LINE／EDM 問卷名單渠道的訂單裡；ding200 是新上線的團購專屬碼，之後團購出貨若集中入帳，用量可能一次跳升</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ new150 這週用量幾乎翻倍（55→82 筆），持續是帶動訂單與金額最多的折扣碼；zec500 穩定成長中，專屬問卷好友，直接反映在 LINE／EDM 問卷名單渠道的訂單裡；ding200 是新上線的團購專屬碼，之後團購出貨若集中入帳，用量可能一次跳升；拿到 10/27 訂單明細後逐筆核對，這 4 組的使用次數、金額跟後台截圖完全一致，訂單使用折扣碼比例改用訂單明細的 126 筆為基準，比上次的 86.5%（戰情表 133 筆口徑）更精準</p>
   </div>
 
   <div class="card">
@@ -1039,7 +1011,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
         </tbody>
       </table>
     </div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 93 筆歸因訂單、$724,334 低於訂單總數 133 筆／$978,330，差額為「無歸因（直接／自然流量）」的 40 筆訂單，詳見總覽「訂單來源分佈」；粗體為這一週成長最快的兩組連結</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 93 筆歸因訂單、$724,334 低於訂單總數 126 筆／$978,330，差額為「無歸因（直接／自然流量）」的 33 筆訂單，詳見總覽「訂單來源分佈」；粗體為這一週成長最快的兩組連結</p>
   </div>
 
 </div></div>
@@ -1053,7 +1025,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 </div></div>
 
 <footer>
-  資料更新：2026 / 10 / 28 ・ 問卷數據統計至 10 / 13（收案完成），銷售／戰情數據統計至 10 / 27，折扣碼與問卷轉換率沿用 10 / 20 數據 ・ 3ZeBra 好動力｜平板律動走步機 專案戰情室
+  資料更新：2026 / 10 / 28 ・ 問卷數據統計至 10 / 13（收案完成），銷售／戰情數據統計至 10 / 27，訂單明細、折扣碼、問卷轉換率皆已更新至 10 / 27 訂單資料 ・ 3ZeBra 好動力｜平板律動走步機 專案戰情室
 </footer>
 
 <script>
@@ -1288,6 +1260,30 @@ new Chart(document.getElementById('chartRoasDaily'), {
     layout:{padding:{top:18}},
     scales:{
       x:{grid:{display:false}, ticks:{font:{size:11}}},
+      y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, beginAtZero:true}
+    }
+  }
+});
+
+/* ===== 每週 ROAS 走勢（廣告、推播） ===== */
+new Chart(document.getElementById('chartRoasWeekly'), {
+  type:'bar',
+  data:{
+    labels:['W1 10/14–10/20','W2 10/21–10/27'],
+    datasets:[
+      {label:'廣告 ROAS', data:[5.6,2.7], backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
+        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)+'x'}},
+      {label:'推播 ROAS', data:[7.4,0.7], backgroundColor:COLOR.accentSoft, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
+        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)+'x'}}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:true, position:'top', align:'end', labels:{boxWidth:10, boxHeight:10, font:{size:12}, color:COLOR.textSoft}},
+      tooltip:{...tooltipBase, callbacks:{label:(ctx)=> ctx.dataset.label+'：'+ctx.parsed.y.toFixed(1)+'x'}}},
+    layout:{padding:{top:22}},
+    scales:{
+      x:{grid:{display:false}, ticks:{font:{size:12}}},
       y:{grid:{color:COLOR.grid}, border:{display:false}, ticks:{display:false}, beginAtZero:true}
     }
   }
