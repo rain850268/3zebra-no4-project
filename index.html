@@ -156,6 +156,9 @@ tr:last-child td{border-bottom:none;}
 .insight-num{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;margin-bottom:6px;}
 .insight-title{font-size:14px;font-weight:700;margin-bottom:6px;}
 .insight-body{font-size:13px;color:var(--text-soft);line-height:1.65;}
+.insight-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-soft);line-height:1.6;}
+.insight-list li{padding-left:16px;position:relative;}
+.insight-list li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--accent);}
 
 /* ===== QUOTE ===== */
 .quote{
@@ -205,20 +208,20 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
       <div>
         <div class="hero-label">專案階段</div>
         <div class="hero-status">🚀 募資開賣中</div>
-        <div class="hero-goal">10/14 正式開賣，今天是開賣第 <strong>21 天</strong></div>
+        <div class="hero-goal">10/14 正式開賣，今天是開賣第 <strong>22 天</strong></div>
       </div>
       <div class="hero-stat">
         <div class="val">$1,182,621</div>
         <div class="lbl">累積募資金額</div>
       </div>
     </div>
-    <div class="progress-track"><div class="progress-fill" style="width:50.0%"></div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:52.5%"></div></div>
     <div class="progress-caption">
-      <span>10/14 開賣</span><span>距離早鳥截止還有 20 天</span><span>11/23 早鳥截止</span>
+      <span>10/14 開賣</span><span>距離早鳥截止還有 19 天</span><span>11/23 早鳥截止</span>
     </div>
     <div class="hero-targets">
       <div class="hero-target">問卷轉換購買率　實際 <b>1.9%</b> ／ 目標 <b>10%</b> <span class="tag" style="margin-left:4px">本週無新訂單明細可比對，沿用 10/30 數據</span></div>
-      <div class="hero-target">整體 ROAS　<b>4.2</b>　<span style="color:var(--muted)">（FB 廣告費累積 $243,205，戰情表口徑，統計至 10/27）</span></div>
+      <div class="hero-target">整體 ROAS　<b>3.6</b>　<span style="color:var(--muted)">（FB 廣告費累積 $339,382，戰情表口徑，統計至 11/3）</span></div>
     </div>
   </div>
 
@@ -237,9 +240,9 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     </div>
     <div class="card kpi">
       <div class="icon">⚡</div>
-      <div class="val">4.2</div>
+      <div class="val">3.6</div>
       <div class="lbl">整體 ROAS</div>
-      <div class="sub">統計至 10/27，尚無後續廣告費資料可更新</div>
+      <div class="sub">統計至 11/3，較 10/27 的 4.2 持續下滑</div>
     </div>
     <div class="card kpi">
       <div class="icon">📊</div>
@@ -253,7 +256,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="section-title">📈 每週 ROAS 走勢（廣告、推播）</div>
     <div class="card-sub">廣告 ROAS＝戰情表口徑（總營收 ÷ FB 廣告費）；推播 ROAS＝推播歸因訂單金額 ÷ 推播成本（EDM $0.1／封、SMS $1／封、LINE $0.4／封，依宜庭提供費率估算）</div>
     <div class="chart-wrap" style="margin-top:14px"><canvas id="chartRoasWeekly"></canvas></div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 推播 ROAS 只計算有點到專屬連結、被歸因到訂單的部分，很多人收到推播後是直接進嘖嘖站內下單、沒點連結，不會算進這個數字，所以實際帶動的效果可能比看到的更好；第二週推播 ROAS 明顯下滑（7.4→0.7）主要是 10/21「地墊只到今天」這波大量發送只歸因到 1 筆訂單，廣告端則相對穩定</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 推播 ROAS 只計算有點到專屬連結、被歸因到訂單的部分，很多人收到推播後是直接進嘖嘖站內下單、沒點連結，不會算進這個數字，所以實際帶動的效果可能比看到的更好；第二週推播 ROAS 明顯下滑（7.4→0.7）主要是 10/21「地墊只到今天」這波大量發送只歸因到 1 筆訂單；第三週（10/28–11/3）靠著 10/28「首批只到今天」這則 83.4% 高已讀率的推播，推播 ROAS 回升到 6.8，廣告 ROAS 則維持在 2.8 左右、沒有繼續下滑</p>
   </div>
 
   <div class="grid2 mb20">
@@ -333,18 +336,26 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
   <div class="grid3">
     <div class="card" style="grid-column:span 2">
       <div class="section-title">💡 重點洞察</div>
-      <div class="insight-body">
-開賣 21 天，累積募資 <strong>$1,182,621</strong>，152 筆訂單（已剔除 1 筆退款），平均客單價 $7,780。廣告 ROAS 4.2 這項指標目前仍只更新到 10/27（尚無後續廣告費資料，Meta 廣告串接後的優化建議另外整理成一份報告）。訂單來源仍是「影片／廣告素材」第一名，佔比再往上推進到 40.8%（$491,876）。折扣碼 new150 使用次數正式破百（104 筆、$822,210），是目前帶動最多訂單的單一折扣碼；zec500 即將在 11/17 到期，接棒的新碼 zec300（金額降為 $300）11/18 上線，屆時記得留意轉換效果。LINE／EDM／SMS 這週都有新推播，LINE 平均已讀率回升到 40.1%，新增一則「11/14 線下體驗」簡訊邀請更繳出 11.93% 的高點擊率，是這次的亮點。問卷轉換購買率這次沒有新的訂單明細可以比對（這批匯出檔案不含 email／電話欄位），暫時維持 10/30 的 1.92%。完整的推播成效跟商品銷售明細都整理在
-        <a href="#" onclick="return switchTab('push', document.querySelectorAll('nav a')[5])" style="color:var(--text);font-weight:700;text-decoration:underline">行銷推播</a> 跟
-        <a href="#" onclick="return switchTab('products', document.querySelectorAll('nav a')[6])" style="color:var(--text);font-weight:700;text-decoration:underline">產品購買</a> 分頁。
-      </div>
+      <ul class="insight-list">
+        <li>開賣 22 天，累積募資 <strong>$1,182,621</strong>，152 筆訂單（已剔除 1 筆退款），平均客單價 $7,780</li>
+        <li>整體 ROAS 持續下滑：10/27 的 4.2 → 11/3 的 <strong>3.6</strong>；Meta 廣告已經串接，優化建議另外整理成一份報告</li>
+        <li>拆成三週看：廣告 ROAS 5.6 → 2.7 → 2.8（已止穩）；推播 ROAS 7.4 → 0.7 → <strong>6.8</strong>（大幅回升），主要靠 10/28「首批只到今天」這則 83.4% 高已讀率的推播拉回來</li>
+        <li>訂單來源持續「影片／廣告素材」第一名，佔比推進到 40.8%（$491,876）</li>
+        <li>折扣碼 new150 使用次數正式破百（104 筆、$822,210），是目前帶動最多訂單的單一折扣碼；zec500 將於 11/17 到期，新碼 zec300（$300）11/18 接棒</li>
+        <li>LINE／EDM／SMS 這週都有新推播，LINE 平均已讀率回升到 40.1%，新增的「11/14 線下體驗」簡訊邀請繳出 11.93% 高點擊率，是這次的亮點</li>
+        <li>問卷轉換購買率這次沒有新的訂單明細可以比對（匯出檔案不含 email／電話欄位），暫時維持 1.92%</li>
+        <li>完整的推播成效跟商品銷售明細都整理在
+          <a href="#" onclick="return switchTab('push', document.querySelectorAll('nav a')[5])" style="color:var(--text);font-weight:700;text-decoration:underline">行銷推播</a> 跟
+          <a href="#" onclick="return switchTab('products', document.querySelectorAll('nav a')[6])" style="color:var(--text);font-weight:700;text-decoration:underline">產品購買</a> 分頁
+        </li>
+      </ul>
     </div>
     <div class="card">
       <div class="section-title">📌 下一步</div>
       <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-soft)">
-        <div>① Meta 廣告已串接，優化建議詳見另外整理的廣告成效報告</div>
+        <div>① 廣告 ROAS 跌破 4，依廣告成效報告收斂興趣／相似受眾預算，集中到再行銷與高效速成</div>
         <div>② zec500 折扣碼 11/17 到期、zec300 11/18 接棒，記得提前確認轉換是否順暢</div>
-        <div>③ 早鳥截止倒數 20 天，準備截止前的衝刺推播</div>
+        <div>③ 早鳥截止倒數 19 天，準備截止前的衝刺推播</div>
       </div>
     </div>
   </div>
@@ -1038,7 +1049,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
 </div></div>
 
 <footer>
-  資料更新：2026 / 11 / 3 ・ 問卷數據統計至 10 / 13（收案完成），廣告費／ROAS 統計至 10 / 27（戰情表口徑），訂單明細、折扣碼、產品購買、推薦贊助、行銷推播皆已更新至 11 / 2 訂單資料，問卷轉換率沿用 10 / 30 數據（本批訂單無 email／電話欄位） ・ 3ZeBra 好動力｜平板律動走步機 專案戰情室
+  資料更新：2026 / 11 / 4 ・ 問卷數據統計至 10 / 13（收案完成），廣告費／ROAS 統計至 11 / 3（戰情表口徑），訂單明細、折扣碼、產品購買、推薦贊助、行銷推播已更新至 11 / 2 訂單資料，問卷轉換率沿用 10 / 30 數據（本批訂單無 email／電話欄位） ・ 3ZeBra 好動力｜平板律動走步機 專案戰情室
 </footer>
 
 <script>
@@ -1234,9 +1245,9 @@ new Chart(document.getElementById('chartFeature'), {
 new Chart(document.getElementById('chartRevenueDaily'), {
   type:'bar',
   data:{
-    labels:['10/14','10/15','10/16','10/17','10/18','10/19','10/20','10/21','10/22','10/23','10/24','10/25','10/26','10/27'],
+    labels:['10/14','10/15','10/16','10/17','10/18','10/19','10/20','10/21','10/22','10/23','10/24','10/25','10/26','10/27','10/28','10/29','10/30','10/31','11/1','11/2','11/3'],
     datasets:[{
-      data:[377149,104708,69855,49035,56726,45639,39177,32358,59337,24469,45939,39350,33539,55478],
+      data:[377149,104708,69855,49035,56726,45639,39177,32358,59337,24469,45939,39350,33539,55478,71685,54979,31309,30339,30510,30159,16473],
       backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom',
       maxBarThickness:28,
       datalabels:{display:false}
@@ -1258,9 +1269,9 @@ new Chart(document.getElementById('chartRevenueDaily'), {
 new Chart(document.getElementById('chartRoasDaily'), {
   type:'line',
   data:{
-    labels:['10/14','10/15','10/16','10/17','10/18','10/19','10/20','10/21','10/22','10/23','10/24','10/25','10/26','10/27'],
+    labels:['10/14','10/15','10/16','10/17','10/18','10/19','10/20','10/21','10/22','10/23','10/24','10/25','10/26','10/27','10/28','10/29','10/30','10/31','11/1','11/2','11/3'],
     datasets:[{
-      data:[14.3,5.2,5.3,2.6,2.8,2.7,2.5,1.9,3.6,1.5,2.6,2.9,2.3,5.2],
+      data:[14.3,5.2,5.3,2.6,2.8,2.7,2.5,1.9,3.6,1.5,2.6,2.9,2.3,5.2,5.6,4.3,2.1,2.0,2.4,1.9,1.4],
       borderColor:COLOR.accent, backgroundColor:COLOR.accent, borderWidth:2,
       pointRadius:4, pointBackgroundColor:COLOR.accent, pointBorderColor:'#fff', pointBorderWidth:2,
       tension:.3,
@@ -1282,11 +1293,11 @@ new Chart(document.getElementById('chartRoasDaily'), {
 new Chart(document.getElementById('chartRoasWeekly'), {
   type:'bar',
   data:{
-    labels:['W1 10/14–10/20','W2 10/21–10/27'],
+    labels:['W1 10/14–10/20','W2 10/21–10/27','W3 10/28–11/3'],
     datasets:[
-      {label:'廣告 ROAS', data:[5.6,2.7], backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
+      {label:'廣告 ROAS', data:[5.6,2.7,2.8], backgroundColor:COLOR.accent, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
         datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)+'x'}},
-      {label:'推播 ROAS', data:[7.4,0.7], backgroundColor:COLOR.accentSoft, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
+      {label:'推播 ROAS', data:[7.4,0.7,6.8], backgroundColor:COLOR.accentSoft, borderRadius:4, borderSkipped:'bottom', maxBarThickness:56,
         datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)+'x'}}
     ]
   },
