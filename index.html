@@ -267,7 +267,7 @@ hr.divider{border:none;border-top:1px solid var(--border-soft);margin:22px 0;}
     <div class="section-title">📈 每週 ROAS 走勢（廣告、推播）</div>
     <div class="card-sub">廣告 ROAS＝戰情表口徑（總營收 ÷ FB 廣告費）；推播 ROAS＝推播歸因訂單金額 ÷ 推播成本（EDM $0.1／封、SMS $1／封、LINE $0.4／封，依宜庭提供費率估算）</div>
     <div class="chart-wrap" style="margin-top:14px"><canvas id="chartRoasWeekly"></canvas></div>
-    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 推播 ROAS 只計算有點到專屬連結、被歸因到訂單的部分，很多人收到推播後是直接進嘖嘖站內下單、沒點連結，不會算進這個數字，所以實際帶動的效果可能比看到的更好；第二週推播 ROAS 明顯下滑（7.4→0.7）主要是 10/21「地墊只到今天」這波大量發送只歸因到 1 筆訂單；第三週（10/28–11/3）靠著 10/28「首批只到今天」這則 83.4% 高已讀率的推播，推播 ROAS 回升到 6.8，廣告 ROAS 則維持在 2.8 左右、沒有繼續下滑</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">＊ 推播 ROAS 只計算有點到專屬連結、被歸因到訂單的部分，很多人收到推播後是直接進嘖嘖站內下單、沒點連結，不會算進這個數字，所以實際帶動的效果可能比看到的更好；第二週推播 ROAS 明顯下滑（7.4→0.7）主要是 10/21「地墊只到今天」這波大量發送只歸因到 1 筆訂單；第三週（10/28–11/3）靠著 10/28「首批只到今天」這則 83.4% 高已讀率的推播，推播 ROAS 回升到 6.8；第四週（11/4–11/10）廣告 ROAS 2.6，跟前一週的 2.8 差不多、算是穩住了；這週沒有新的 LINE／SMS 推播資料、也還沒有新訂單明細可以比對歸因，所以推播 ROAS 暫時留空，待下一批訂單檔到位後補上</p>
   </div>
 
   <div class="grid2 mb20">
@@ -1256,20 +1256,20 @@ new Chart(document.getElementById('chartRoasDaily'), {
 new Chart(document.getElementById('chartRoasWeekly'), {
   type:'line',
   data:{
-    labels:['W1 10/14–10/20','W2 10/21–10/27','W3 10/28–11/3'],
+    labels:['W1 10/14–10/20','W2 10/21–10/27','W3 10/28–11/3','W4 11/4–11/10'],
     datasets:[
-      {label:'廣告 ROAS', data:[5.6,2.7,2.8], borderColor:COLOR.accent, backgroundColor:COLOR.accent, borderWidth:2,
+      {label:'廣告 ROAS', data:[5.6,2.7,2.8,2.6], borderColor:COLOR.accent, backgroundColor:COLOR.accent, borderWidth:2,
         pointRadius:4, pointBackgroundColor:COLOR.accent, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3,
-        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)}},
-      {label:'推播 ROAS', data:[7.4,0.7,6.8], borderColor:COLOR.accentSoft, backgroundColor:COLOR.accentSoft, borderWidth:2,
+        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=> v==null?'':v.toFixed(1)}},
+      {label:'推播 ROAS', data:[7.4,0.7,6.8,null], borderColor:COLOR.accentSoft, backgroundColor:COLOR.accentSoft, borderWidth:2,
         pointRadius:4, pointBackgroundColor:COLOR.accentSoft, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3,
-        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=>v.toFixed(1)}}
+        datalabels:{display:true, anchor:'end', align:'top', color:COLOR.textSoft, font:{weight:'600',size:12}, formatter:(v)=> v==null?'':v.toFixed(1)}}
     ]
   },
   options:{
     responsive:true, maintainAspectRatio:false,
     plugins:{legend:{display:true, position:'top', align:'end', labels:{boxWidth:10, boxHeight:10, font:{size:12}, color:COLOR.textSoft}},
-      tooltip:{...tooltipBase, callbacks:{label:(ctx)=> ctx.dataset.label+'：'+ctx.parsed.y.toFixed(1)}}},
+      tooltip:{...tooltipBase, callbacks:{label:(ctx)=> ctx.parsed.y==null ? ctx.dataset.label+'：尚無資料' : ctx.dataset.label+'：'+ctx.parsed.y.toFixed(1)}}},
     layout:{padding:{top:22}},
     scales:{
       x:{grid:{display:false}, ticks:{font:{size:12}}},
